@@ -2,16 +2,16 @@ package com.example.javamvnspringbtblank.model;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class EmailNotification extends NotificationBase {
-    private AtomicInteger notificationId;
+public class BasicNotification extends NotificationBase {
+    private long notificationId;
 
     private String msg;
 
-    public AtomicInteger getNotificationId() {
+    public long getNotificationId() {
         return notificationId;
     }
 
-    public void setNotificationId(AtomicInteger notificationId) {
+    public void setNotificationId(long notificationId) {
         this.notificationId = notificationId;
     }
 
@@ -24,10 +24,10 @@ public class EmailNotification extends NotificationBase {
         this.msg = msg;
     }
 
-    public EmailNotification() {
+    public BasicNotification() {
     }
 
-    public EmailNotification(String msg) {
+    public BasicNotification(String msg) {
         this.msg = msg;
     }
 
@@ -37,5 +37,5 @@ public class EmailNotification extends NotificationBase {
     }
 
     // todo: toString()
-    // todo: override equals() & hash() methods
+    // todo: override equals() & hashCode() methods
 }
