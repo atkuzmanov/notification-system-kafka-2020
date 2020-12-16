@@ -36,9 +36,11 @@ Build MVP prototype with minimum set of required functionality to send notificat
         - Interfaces:
             - Inbound (Trigger/Consumer):
                 - This will be an Interface which can have multiple implementations which can be used to either trigger/send a notification or consume a notification from a source.
+                    - In the future this can be extended to consume notifications from inbound queue systems or User Interface.
                     - For the purposes of the scope of this task this will have one implementation which will be in the form of REST endpoints to trigger/send a notification.
             - Outbound (Sender/Forwarder):
                 - This will be an Interface which can have multiple implementations which can be used to either forward/send a notification to a specific channel.
+                    - In the future this can be extended to push notifications etc.
                     - For the purposes of the scope of this task this will have three implementations - email, sms and slack. 
     - Additional considerations:
         - JSON serialisation
@@ -52,6 +54,7 @@ Build MVP prototype with minimum set of required functionality to send notificat
         - Database persistence of notifications and timestamp
         - Distributed Tracing
         - Design Patterns - Builder, Factory, ...
+        - No graphical User Interface (UX) required
 
 - Requirement `2.` analysis and breakdown:    
     - Containerize with Docker, so it can be scaled in Kubernetes or Cloud.
