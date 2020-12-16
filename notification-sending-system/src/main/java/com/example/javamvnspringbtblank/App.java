@@ -16,13 +16,13 @@ public class App {
 		SpringApplication.run(App.class, args);
 	}
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
-
-	@Bean
-	public ConversionService conversionService() {
-		return new DefaultConversionService();
-	}
+//	@Bean
+//	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+//		return new PropertySourcesPlaceholderConfigurer();
+//	}
+//
+//	@Bean
+//	public ConversionService conversionService() {
+//		return new DefaultConversionService();
+//	}
 }
