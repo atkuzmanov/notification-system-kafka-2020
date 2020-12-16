@@ -43,8 +43,12 @@ Build MVP prototype with minimum set of required functionality to send notificat
                     - In the future this can be extended to push notifications etc.
                     - For the purposes of the scope of this task this will have three implementations - email, sms and slack. 
     - Additional considerations:
+        - REST API 
         - JSON serialisation
-        - Unit Testing
+        - Testing
+            - Unit Testing
+            - Integration Testing
+            - Load Testing
         - Security
             - Encapsulation
             - Immutability
@@ -71,6 +75,7 @@ Build MVP prototype with minimum set of required functionality to send notificat
 - Documentation
  - System Design Diagram
  - Further development
+    - Swagger
     - Kafka
     - AWS SNS + SQS
     - JMS
