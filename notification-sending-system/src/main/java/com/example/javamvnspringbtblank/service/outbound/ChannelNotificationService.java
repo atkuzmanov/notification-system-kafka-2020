@@ -21,20 +21,32 @@ public class ChannelNotificationService implements NotificationService {
         this.factory = factory;
     }
 
+    /**
+     * Notifies all available channels with the specified notification
+     * @param notification
+     * @return the notification id
+     */
     @Override
     public long notifyAll(Notification notification) {
-        for(Channel c : factory.getChannels()) {
+        for (Channel c : factory.getChannels()) {
             notification.setNotificationId(notificationId.getAndIncrement());
             c.notify(notification);
-            //LOG.debug("ID = "+notificationId+", Message sent = "+notification.getMsg());
+//            LOG.debug("ID = " + notificationId + ", Message sent = " + notification.getMsg());
         }
         return notificationId.longValue();
     }
 
+    /**
+     * Notifies the specified channel type with a specified notification
+     * @param channelType
+     * @param notification
+     * @return notification id
+     */
     public long notify(NotificationChannelType channelType, Notification notification) {
         notification.setNotificationId(notificationId.getAndIncrement());
-        factory.get(channelType).notify(notification);
-//        LOG.debug("ID = "+notificationId+", Message sent = "+notification.getMsg());
+        Channel channelToNotify = factory.get(channelType);
+        channelToNotify.notify(notification);
+//        LOG.debug("ID = " + notificationId + ", Message sent = " + notification.getMsg());
         return notificationId.longValue();
     }
 
