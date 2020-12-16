@@ -6,41 +6,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.example.javamvnspringbtblank.model.NotificationChannelType.*;
 
 @Component
 public class ChannelFactory {
-        private final List<Channel> channelList;
-//    private final List<NotificationChannelType> channelTypeList;
-//    List<Channel> channelList = new ArrayList<>();
-
-//    @Value("#{'${supported.channel.list}'.split(',')}")
-//    @Value("#{${supported.channel.list}}")
-//    @Value("#{'${supported.channel.list}'.replace(' ', '').split(',')}")
-//    private List<String> supportedChannelListConfig;
-
+    private final List<Channel> channelList;
 
     @Autowired
-    public ChannelFactory(@Value("#{'${supported.channel.list}'.replace(' ', '').split(',')}") List<String> supportedChannelListConfig) {
+    public ChannelFactory(
+            @Value("#{'${supported.channel.list}'.replace(' ', '').split(',')}")
+                    List<String> supportedChannelListConfig) {
         this.channelList = configureFactory(supportedChannelListConfig);
-//        this.channelList = configureFactory();
-//        System.out.println(supportedChannelListConfig.toArray().toString());
-//        System.out.println(Arrays.asList(supportedChannelListConfig));
-        System.out.println("<> " + Arrays.asList(channelList));
     }
-
-//    @Autowired
-//    public ChannelFactory(List<NotificationChannelType> channelTypeList) {
-//        this.channelTypeList = channelTypeList;
-//    }
-
-//    @Autowired
-//    public ChannelFactory(List<Channel> channelList) {
-//        this.channelList = channelList;
-//    }
 
     public Channel get(NotificationChannelType c) {
         return channelList

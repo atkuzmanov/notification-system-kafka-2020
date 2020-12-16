@@ -1,7 +1,5 @@
 package com.example.javamvnspringbtblank.model;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public interface Notification {
     long getNotificationId();
 
