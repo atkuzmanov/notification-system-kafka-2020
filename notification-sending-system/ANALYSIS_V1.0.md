@@ -82,4 +82,5 @@ Build MVP prototype with minimum set of required functionality to send notificat
     - RabbitMQ
 
 ***All of the outlined requirements above are subject to change and will be considered based on importance and time constraints.***
- 
+
+***All of the outlined requirements above will be considered, but only the most important ones will be implemented based on time constraints.***
