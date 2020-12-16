@@ -37,4 +37,5 @@ public class EmailNotification extends NotificationBase {
     }
 
     // todo: toString()
+    // todo: override equals() & hash() methods
 }
