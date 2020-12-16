@@ -24,6 +24,7 @@ The interface for accepting notifications to be sent can be chosen on your own d
 - Requirement 1. :
     - Build extensible hierarchical data model
     - Build required channel functionality
+    - JSON serialisation?
     - Unit Testing
     - Security
         - Encapsulation
@@ -45,3 +46,5 @@ The interface for accepting notifications to be sent can be chosen on your own d
     - Technologies
         - Kafka
         - AWS SNS + SQS
+        - JMS
+        - RabbitMQ
