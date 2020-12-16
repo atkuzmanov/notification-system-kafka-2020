@@ -7,7 +7,7 @@ public interface Notification {
 
     void setNotificationId(long notificationId);
 
-    String getMsg();
+    String getMessage();
 
-    void setMsg(String msg);
+    void setMessage(String message);
 }

@@ -3,7 +3,7 @@ package com.example.javamvnspringbtblank.model;
 public class BasicNotification extends NotificationBase {
     private long notificationId;
 
-    private String msg;
+    private String message;
 
     public long getNotificationId() {
         return notificationId;
@@ -14,24 +14,24 @@ public class BasicNotification extends NotificationBase {
     }
 
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public BasicNotification() {
     }
 
     public BasicNotification(String msg) {
-        this.msg = msg;
+        this.message = msg;
     }
 
     @Override
     public String message() {
-        return msg;
+        return message;
     }
 
     // todo: toString()

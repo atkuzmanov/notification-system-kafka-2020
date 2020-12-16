@@ -1,7 +1,7 @@
 package com.example.javamvnspringbtblank.model;
 
 public enum NotificationChannelType {
-    EMAIL, SMS, SLACK;
+    email, sms, slack;
 
     @Override
     public String toString() {
