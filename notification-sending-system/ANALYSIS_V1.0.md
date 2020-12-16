@@ -17,8 +17,8 @@ sms, slack) and be easily extensible to support more channels in the future.
 
 ## Requirements Analysis & Breakdown
 
-Goal:
-Build MVP with minimum set of required functionality to send notifications on three channels.
+**Goal:**
+Build MVP prototype with minimum set of required functionality to send notifications on three channels.
 
 - Tech stack based on requirements:
     - Java
