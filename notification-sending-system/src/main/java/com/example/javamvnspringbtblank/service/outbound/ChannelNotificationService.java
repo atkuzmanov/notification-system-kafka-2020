@@ -23,6 +23,7 @@ public class ChannelNotificationService implements NotificationService {
 
     /**
      * Notifies all available channels with the specified notification
+     *
      * @param notification
      * @return the notification id
      */
@@ -38,6 +39,7 @@ public class ChannelNotificationService implements NotificationService {
 
     /**
      * Notifies the specified channel type with a specified notification
+     *
      * @param channelType
      * @param notification
      * @return notification id
@@ -49,5 +51,4 @@ public class ChannelNotificationService implements NotificationService {
 //        LOG.debug("ID = " + notificationId + ", Message sent = " + notification.getMsg());
         return notificationId.longValue();
     }
-
 }
