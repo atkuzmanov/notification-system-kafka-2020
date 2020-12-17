@@ -8,9 +8,13 @@ import com.example.javamvnspringbtblank.service.outbound.ChannelNotificationServ
 import com.example.javamvnspringbtblank.service.outbound.NotificationService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,9 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-@SpringBootTest
+//@SpringBootTest
+@RunWith(SpringRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ChannelNotificationTest {
     private NotificationService service;
     private ChannelFactory factory;
