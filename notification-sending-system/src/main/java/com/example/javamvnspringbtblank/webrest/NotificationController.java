@@ -24,12 +24,14 @@ public class NotificationController {
     @PostMapping(path = "/notify/{channelType}")
     public @ResponseBody
     ResponseEntity<String> notify(@PathVariable NotificationChannelType channelType, @RequestBody BasicNotification notification) {
-        long sentNotificationId = service.notify(channelType, notification);
-        return new ResponseEntity<>("Notification", HttpStatus.OK);
+        long notifId = service.notify(channelType, notification);
+        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType + "]." , HttpStatus.OK);
     }
 
     @PostMapping("/notifyAll")
-    public long notifyAll(@RequestBody BasicNotification notification) {
-        return service.notifyAll(notification);
+    public @ResponseBody
+    ResponseEntity<String> notifyAll(@RequestBody BasicNotification notification) {
+        long notifId = service.notifyAll(notification);
+        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to all channels." , HttpStatus.OK);
     }
 }
