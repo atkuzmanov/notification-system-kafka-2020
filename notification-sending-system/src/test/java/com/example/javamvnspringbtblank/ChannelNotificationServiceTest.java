@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
-class ChannelNotificationTest {
+class ChannelNotificationServiceTest {
     private NotificationService service;
     private ChannelFactory factory;
 
