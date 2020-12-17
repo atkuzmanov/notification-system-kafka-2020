@@ -26,6 +26,8 @@ Build MVP prototype with minimum set of required functionality to send notificat
 
 ### Functional requirements
 
+**`TODO` research, filter and prioritize the following according to importance and time constraints:** 
+
 - Requirement `1.` analysis and breakdown:
     - Build extensible hierarchical data model
         - Will build towards and interface.
@@ -54,6 +56,8 @@ Build MVP prototype with minimum set of required functionality to send notificat
             - Immutability
         - Exception handling
         - Thread safe
+        - Performance
+            - `TODO` research if custom thread pool is needed for vertical performance scalability. 
         - Logging
         - `TODO` research if database persistence of notifications and timestamp is required
         - Distributed Tracing
@@ -61,7 +65,7 @@ Build MVP prototype with minimum set of required functionality to send notificat
         - No graphical User Interface (UX) required
 
 - Requirement `2.` analysis and breakdown:    
-    - Containerize with Docker, so it can be scaled in Kubernetes or Cloud.
+    - `TODO` research if containerization with Docker is required, so it can be scaled in Kubernetes or Cloud.
 
 - Requirement `3.` analysis and breakdown:
     - Implement "at least once" logic to guarantee SLA.
