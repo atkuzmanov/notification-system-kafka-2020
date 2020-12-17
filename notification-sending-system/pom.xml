@@ -9,15 +9,17 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>javamvnspringbtblank</artifactId>
+    <artifactId>notification-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>javamvnspringbtblank</name>
+    <name>notification-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <logstash-logback-encoder.version>6.4</logstash-logback-encoder.version>
+        <java-uuid-generator.version>4.0</java-uuid-generator.version>
     </properties>
 
     <dependencies>
@@ -39,6 +41,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.uuid</groupId>
+            <artifactId>java-uuid-generator</artifactId>
+            <version>${java-uuid-generator.version}</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>junit</groupId>-->
