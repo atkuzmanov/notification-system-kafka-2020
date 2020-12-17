@@ -6,12 +6,14 @@ import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import com.example.javamvnspringbtblank.service.channel.*;
 import com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService;
 import com.example.javamvnspringbtblank.service.outbound.NotificationService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
+//import org.junit.After;
+//import org.junit.Before;
+//import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+//import org.junit.runner.RunWith;
+//import org.junit.runners.MethodSorters;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,23 +21,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+//import static org.junit.Assert.assertThat;
 
-//@SpringBootTest
-@RunWith(SpringRunner.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ChannelNotificationTest {
     private NotificationService service;
     private ChannelFactory factory;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-//        MockitoAnnotations.initMocks(this);
-//        List<Channel> channelList = new ArrayList<>(2);
-//        channelList.add(new SlackChannel());
-//        channelList.add(new EmailChannel());
-//        channelList.add(new SMSChannel());
+        MockitoAnnotations.initMocks(this);
         List<String> supportedChannelList = new ArrayList<>();
         supportedChannelList.add("email");
         supportedChannelList.add("slack");
@@ -44,12 +43,12 @@ class ChannelNotificationTest {
         service = new ChannelNotificationService(factory);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
     }
 
     @Test
-    void testNotifyHappyPath1() {
+    public void testNotifyHappyPath1() {
         Notification notification = generateNotification();
 
         assertThat(service.notify(NotificationChannelType.email, notification), is(2L));
