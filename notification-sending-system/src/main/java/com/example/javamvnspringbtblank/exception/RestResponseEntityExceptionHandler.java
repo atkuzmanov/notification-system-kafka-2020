@@ -47,20 +47,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     protected ResponseEntity<?> errorResponse(Throwable throwable, HttpStatus status) {
         if (throwable != null) {
-//            return ResponseDetails.builder()
-//                    .status(status.value())
-//                    .responseMessage(throwable.getMessage())
-//                    .throwable(new Exception(throwable))
-//                    .headers(tracingResponseHeaders())
-//                    .entity();
-            new ResponseEntity<>(throwable.getMessage(), status);
+            return new ResponseEntity<>(throwable.getMessage(), status);
         } else {
             return response(null, status);
         }
     }
 
     protected <T> ResponseEntity<T> response(T body, HttpStatus status) {
-//        return new ResponseEntity<>(body, tracingResponseHeaders(), status);
         return new ResponseEntity<>(body, status);
     }
 }
