@@ -55,7 +55,7 @@ Build MVP prototype with minimum set of required functionality to send notificat
         - Exception handling
         - Thread safe
         - Logging
-        - Database persistence of notifications and timestamp
+        - `TODO` research if database persistence of notifications and timestamp is required
         - Distributed Tracing
         - Design Patterns - Builder, Factory, ...
         - No graphical User Interface (UX) required
@@ -76,10 +76,11 @@ Build MVP prototype with minimum set of required functionality to send notificat
  - System Design Diagram
  - Further development
     - Swagger
-    - Kafka
-    - AWS SNS + SQS
-    - JMS
-    - RabbitMQ
+    - More resilience and availability through adding queue technologies both inbound and outbound, such as:
+        - Kafka
+        - AWS SNS + SQS
+        - JMS
+        - RabbitMQ
 
 ***All of the outlined requirements above are subject to change and will be considered based on importance and time constraints.***
 
