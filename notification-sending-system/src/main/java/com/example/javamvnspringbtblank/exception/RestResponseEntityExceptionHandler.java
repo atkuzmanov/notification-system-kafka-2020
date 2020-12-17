@@ -35,16 +35,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return errorResponse(t, HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * Send a 409 Conflict in case of concurrent modification.
-     */
-//    @ExceptionHandler({ObjectOptimisticLockingFailureException.class, OptimisticLockingFailureException.class,
-//            DataIntegrityViolationException.class})
-//    @ResponseBody
-//    public ResponseEntity<?> handleConflict(Exception ex) {
-//        return errorResponse(ex, HttpStatus.CONFLICT);
-//    }
-
     protected ResponseEntity<?> errorResponse(Throwable throwable, HttpStatus status) {
         if (throwable != null) {
             return new ResponseEntity<>(throwable.getMessage(), status);
