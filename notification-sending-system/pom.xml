@@ -102,7 +102,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <mainClass>com.example.javamvnspringbtblank.App</mainClass>
-                        <layout>jar</layout>
+                        <layout>JAR</layout>
                     </configuration>
                     <executions>
                         <execution>
