@@ -32,3 +32,5 @@ services:
     image: notification-sending-system:latest
     ports:
       - 8081:8080
+    depends_on:
+      - kafka

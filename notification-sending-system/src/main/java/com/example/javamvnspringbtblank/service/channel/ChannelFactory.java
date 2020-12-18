@@ -1,5 +1,6 @@
 package com.example.javamvnspringbtblank.service.channel;
 
+import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,9 @@ import static com.example.javamvnspringbtblank.model.NotificationChannelType.*;
 @Component
 public class ChannelFactory {
     private final List<Channel> channelList;
+
+    @Autowired
+    private Producer producer;
 
     @Autowired
     public ChannelFactory(
@@ -39,7 +43,7 @@ public class ChannelFactory {
             NotificationChannelType type = valueOf(suppChannel);
             switch (type) {
                 case email:
-                    channelList.add(new EmailChannel());
+                    channelList.add(new EmailChannel(producer));
                     break;
                 case sms:
                     channelList.add(new SMSChannel());

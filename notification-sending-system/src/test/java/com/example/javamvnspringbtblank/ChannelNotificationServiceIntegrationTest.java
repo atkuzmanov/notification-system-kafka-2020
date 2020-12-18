@@ -1,6 +1,9 @@
 package com.example.javamvnspringbtblank;
 
+import com.example.javamvnspringbtblank.kafka.Consumer;
+import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
+import com.example.javamvnspringbtblank.service.channel.EmailChannel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
+import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
@@ -18,10 +23,12 @@ import static com.example.javamvnspringbtblank.ChannelNotificationServiceTest.ge
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = App.class,
+@SpringBootTest(classes = {App.class, Producer.class, Consumer.class, EmailChannel.class},
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @AutoConfigureMockMvc
+//@DirtiesContext
+//@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
 public class ChannelNotificationServiceIntegrationTest {
     private static final String BASE_URL = "/notification-service";
     private static final String HOST = "http://localhost:";
@@ -31,6 +38,13 @@ public class ChannelNotificationServiceIntegrationTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+
+//    @Autowired
+//    private Consumer consumer;
+//
+//    @Autowired
+//    private Producer producer;
 
     @LocalServerPort
     private int port;
