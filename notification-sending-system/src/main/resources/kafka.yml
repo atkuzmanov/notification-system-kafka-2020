@@ -4,6 +4,8 @@ example:
 spring:
   kafka:
     bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
+#    bootstrap-servers: ${kafka_bootstrap_servers}
+#    bootstrap-servers: localhost:9092
     properties:
       sasl:
         jaas:

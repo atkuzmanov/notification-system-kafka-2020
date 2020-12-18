@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 //@Component
 @Service
-@ConditionalOnProperty(value = "example.kafka.consumer-enabled", havingValue = "true")
+//@ConditionalOnProperty(value = "example.kafka.consumer-enabled", havingValue = "true")
 public class Consumer {
 
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
