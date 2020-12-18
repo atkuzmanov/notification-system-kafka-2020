@@ -1,0 +1,10 @@
+version: "2"
+services:
+  notification-sending-system:
+    container_name: notification-sending-system
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: notification-sending-system:latest
+    ports:
+      - 8081:8080
