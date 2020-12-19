@@ -32,7 +32,6 @@ public class ChannelNotificationService implements NotificationService {
         for (Channel c : factory.getChannels()) {
             notification.setNotificationId(notificationId.getAndIncrement());
             c.notify(notification);
-//            LOG.debug("ID = " + notificationId + ", Message sent = " + notification.getMsg());
         }
         return notificationId.longValue();
     }
@@ -48,7 +47,6 @@ public class ChannelNotificationService implements NotificationService {
         notification.setNotificationId(notificationId.getAndIncrement());
         Channel channelToNotify = factory.get(channelType);
         channelToNotify.notify(notification);
-//        LOG.debug("ID = " + notificationId + ", Message sent = " + notification.getMsg());
         return notificationId.longValue();
     }
 }

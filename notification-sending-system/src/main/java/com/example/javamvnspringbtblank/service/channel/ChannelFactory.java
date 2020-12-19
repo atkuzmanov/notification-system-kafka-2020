@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.javamvnspringbtblank.model.NotificationChannelType.*;
 
@@ -16,21 +17,18 @@ public class ChannelFactory {
     private final List<Channel> channelList;
 
     @Autowired
-    private Producer producer;
-
-    @Autowired
     public ChannelFactory(
             @Value("#{'${supported.channel.list}'.replace(' ', '').split(',')}")
                     List<String> supportedChannelListConfig) {
         this.channelList = configureFactory(supportedChannelListConfig);
     }
 
-    public Channel get(NotificationChannelType c) {
+    public Channel get(final NotificationChannelType channelType) {
         return channelList
                 .stream()
-                .filter(service -> service.supports(c))
+                .filter(service -> service.supports(channelType))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Not found: channel with type: " + c));
+                .orElseThrow(() -> new RuntimeException("Not found: channel with type: " + channelType));
     }
 
     public List<Channel> getChannels() {
@@ -38,12 +36,13 @@ public class ChannelFactory {
     }
 
     private List<Channel> configureFactory(List<String> supportedChannelListConfig) {
+        supportedChannelListConfig = Optional.ofNullable(supportedChannelListConfig).orElse(new ArrayList<>());
         List<Channel> channelList = new ArrayList<>();
         for (String suppChannel : supportedChannelListConfig) {
             NotificationChannelType type = valueOf(suppChannel);
             switch (type) {
                 case email:
-                    channelList.add(new EmailChannel(producer));
+                    channelList.add(new EmailChannel());
                     break;
                 case sms:
                     channelList.add(new SMSChannel());
@@ -51,6 +50,8 @@ public class ChannelFactory {
                 case slack:
                     channelList.add(new SlackChannel());
                     break;
+                default:
+                    throw new IllegalArgumentException("Unsupported channel type.");
             }
         }
         return channelList;

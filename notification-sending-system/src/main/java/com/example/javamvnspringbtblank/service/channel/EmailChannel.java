@@ -1,15 +1,19 @@
 package com.example.javamvnspringbtblank.service.channel;
 
 import com.example.javamvnspringbtblank.kafka.Producer;
+import com.example.javamvnspringbtblank.model.BasicNotification;
 import com.example.javamvnspringbtblank.model.Notification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 @Component
@@ -17,17 +21,17 @@ public class EmailChannel implements Channel {
 
     private final Logger logger = LoggerFactory.getLogger(EmailChannel.class);
 
-    private final Producer producer;
-
-    public EmailChannel(Producer producer) {
-        this.producer = producer;
-    }
+    @Autowired
+    private Producer producer;
 
     @Override
     public void notify(Notification notification) {
-        System.out.println(notification.getMessage());
+        // todo: remove it
+        System.out.println(">>> " + notification.getMessage());
 
-        ListenableFuture<SendResult<String, String>> listenableFuture = this.producer.sendMessage("INPUT_DATA", "IN_KEY", LocalDate.now().toString());
+        Notification noti = Optional.ofNullable(notification).orElse(new BasicNotification(1L, ""));
+
+        ListenableFuture<SendResult<String, String>> listenableFuture = this.producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
 
         SendResult<String, String> result = null;
         try {

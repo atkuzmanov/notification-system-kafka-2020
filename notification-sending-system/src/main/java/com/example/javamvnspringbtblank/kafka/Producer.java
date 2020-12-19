@@ -2,11 +2,9 @@ package com.example.javamvnspringbtblank.kafka;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
-//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
-//@Component
 @Service
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class Producer {

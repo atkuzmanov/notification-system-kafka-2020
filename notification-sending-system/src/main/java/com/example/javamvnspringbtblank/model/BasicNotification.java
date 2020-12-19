@@ -29,6 +29,11 @@ public class BasicNotification extends NotificationBase {
         this.message = msg;
     }
 
+    public BasicNotification(long notificationId, String msg) {
+        this.notificationId = notificationId;
+        this.message = msg;
+    }
+
     @Override
     public String message() {
         return message;

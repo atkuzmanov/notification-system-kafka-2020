@@ -2,19 +2,15 @@ package com.example.javamvnspringbtblank.kafka;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
-//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-//@Component
 @Service
-//@ConditionalOnProperty(value = "example.kafka.consumer-enabled", havingValue = "true")
 @EnableKafka
 public class Consumer {
 
@@ -29,7 +25,8 @@ public class Consumer {
                         final @Header(KafkaHeaders.RECEIVED_TIMESTAMP) long ts,
                         final Acknowledgment acknowledgment
     ) {
-        logger.info(String.format("#### -> Consumed message -> TIMESTAMP: %d\n%s\noffset: %d\nkey: %s\npartition: %d\ntopic: %s", ts, message, offset, key, partition, topic));
+        logger.info(String.format("#### -> Consumed message -> TIMESTAMP: %d\n%s\noffset: %d\nkey: %s\npartition: %d\ntopic: %s",
+                ts, message, offset, key, partition, topic));
         acknowledgment.acknowledge();
     }
 }
