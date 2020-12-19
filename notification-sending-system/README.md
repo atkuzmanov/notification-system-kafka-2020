@@ -3,12 +3,18 @@
 ---
 
 For Docker container, to be packaged well:
-```sh
+```shell
 mvn clean package install spring-boot:repackage -DskipTests
 ```
 
-```sh
+```shell
 docker-compose up --build --remove-orphans
+```
+
+For remote debugging in Dockerfile:
+
+```shell
+ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.security.egd=file:/dev/./urandom
 ```
 
 ---
