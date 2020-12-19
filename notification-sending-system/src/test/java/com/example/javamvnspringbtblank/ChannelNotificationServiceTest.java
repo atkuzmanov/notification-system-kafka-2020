@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
@@ -36,28 +38,45 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
+//@SpringBootTest
+//@SpringBootTest(classes = {App.class, Producer.class, Consumer.class, EmailChannel.class})
+//@RunWith(SpringRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @RunWith(MockitoJUnitRunner.class)
 class ChannelNotificationServiceTest {
-    @Autowired
-    private NotificationService service;
-    @Autowired
-    private ChannelFactory factory;
+    //    @Autowired
     @Mock
+//    @InjectMocks
+            ChannelFactory channelFactory;
+
+    @InjectMocks
+    EmailChannel emailChannel;
+
+
+    //    @Autowired
+//    @Mock
+    @InjectMocks
+    private ChannelNotificationService service;
+
+    @Mock
+//    @InjectMocks
     private KafkaTemplate<String, String> kafkaTemplate;
+    //    @Mock
     @InjectMocks
     private Producer producer;
-    @Mock
+    //    @Mock
+    @InjectMocks
     private Consumer consumer;
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
-        List<String> supportedChannelList = new ArrayList<>();
-        supportedChannelList.add("email");
-        supportedChannelList.add("slack");
-        supportedChannelList.add("sms");
-        factory = new ChannelFactory(supportedChannelList);
-        service = new ChannelNotificationService(factory);
+//        List<String> supportedChannelList = new ArrayList<>();
+//        supportedChannelList.add("email");
+//        supportedChannelList.add("slack");
+//        supportedChannelList.add("sms");
+//        channelFactory = new ChannelFactory(supportedChannelList);
+//        service = new ChannelNotificationService(channelFactory);
     }
 
     @AfterEach
@@ -79,8 +98,10 @@ class ChannelNotificationServiceTest {
 
     @Test
     public void can_publishDataToKafka() throws ExecutionException, InterruptedException {
-        String key = "test_key_1";
-        String topic = "test_topic_1";
+//        String key = "test_key_1";
+        String key = "IN_KEY";
+//        String topic = "test_topic_1";
+        String topic = "INPUT_DATA";
         long offset = 1L;
         int partition = 1;
         String testMsg = "Test message 1.";
@@ -92,18 +113,29 @@ class ChannelNotificationServiceTest {
         ListenableFuture<SendResult<String, String>> responseFuture = mock(ListenableFuture.class);
         RecordMetadata recordMetadata = new RecordMetadata(new TopicPartition(topic, partition), offset, 0L, 0L, 0L, 0, 0);
 
+//        when(channelFactory.get(NotificationChannelType.email)).thenReturn(new EmailChannel());
+        when(channelFactory.get(NotificationChannelType.email)).thenReturn(emailChannel);
+
         given(sendResult.getRecordMetadata()).willReturn(recordMetadata);
 //        when(sendResult.getRecordMetadata()).thenReturn(recordMetadata);
-        when(producer.sendMessage(topic, key, testMsg)).thenReturn(responseFuture);
+//        when(kafkaTemplate.send(topic, key, testMsg)).thenReturn(responseFuture);
+        when(kafkaTemplate.send(anyString(), anyString(), anyString())).thenReturn(responseFuture);
+//        when(producer.sendMessage(topic, key, testMsg)).thenReturn(responseFuture);
+        when(producer.sendMessage(anyString(), anyString(), anyString())).thenReturn(responseFuture);
         when(responseFuture.get()).thenReturn(sendResult);
-        when(kafkaTemplate.send(topic, key, testMsg)).thenReturn(responseFuture);
-        doAnswer(invocationOnMock -> {
-            ListenableFutureCallback listenableFutureCallback = invocationOnMock.getArgument(0);
-            listenableFutureCallback.onSuccess(sendResult);
-            assertEquals(sendResult.getRecordMetadata().offset(), offset);
-            assertEquals(sendResult.getRecordMetadata().partition(), partition);
-            return null;
-        }).when(responseFuture).addCallback(any(ListenableFutureCallback.class));
+
+//        given(sendResult.getRecordMetadata()).willReturn(recordMetadata);
+//        given(kafkaTemplate.send(topic, key, testMsg)).willReturn(responseFuture);
+//        given(producer.sendMessage(topic, key, testMsg)).willReturn(responseFuture);
+//        given(responseFuture.get()).willReturn(sendResult);
+
+//        doAnswer(invocationOnMock -> {
+//            ListenableFutureCallback listenableFutureCallback = invocationOnMock.getArgument(0);
+//            listenableFutureCallback.onSuccess(sendResult);
+//            assertEquals(sendResult.getRecordMetadata().offset(), offset);
+//            assertEquals(sendResult.getRecordMetadata().partition(), partition);
+//            return null;
+//        }).when(responseFuture).addCallback(any(ListenableFutureCallback.class));
 
 //        service.publishDataToKafka(key, topic, siebelRecord);
         service.notify(producer, NotificationChannelType.email, generateNotification());

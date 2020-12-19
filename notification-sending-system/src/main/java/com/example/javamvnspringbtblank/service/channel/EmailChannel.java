@@ -23,10 +23,10 @@ public class EmailChannel implements Channel {
 
     @Override
     public void notify(Producer producer, Notification notification) {
-        // todo: remove it
-        System.out.println(">>> " + notification.getMessage());
-
         Notification noti = Optional.ofNullable(notification).orElse(new BasicNotification(1L, ""));
+
+        // todo: remove it
+        System.out.println(">>> " + noti.getMessage());
 
 //        ListenableFuture<SendResult<String, String>> listenableFuture = this.producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
         ListenableFuture<SendResult<String, String>> listenableFuture = producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
