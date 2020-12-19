@@ -1,5 +1,6 @@
 package com.example.javamvnspringbtblank.webrest;
 
+import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.BasicNotification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService;
@@ -13,6 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping({"/", "/notification-service"})
 public class NotificationController {
 
+    private final Producer producer;
+
+    @Autowired
+    NotificationController(Producer producer){
+        this.producer = producer;
+    }
+
     @Autowired
     private ChannelNotificationService service;
 
@@ -24,7 +32,7 @@ public class NotificationController {
     @PostMapping(path = "/notify/{channelType}")
     public @ResponseBody
     ResponseEntity<String> notify(@PathVariable NotificationChannelType channelType, @RequestBody BasicNotification notification) {
-        long notifId = service.notify(channelType, notification);
+        long notifId = service.notify(producer, channelType, notification);
         return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType + "]." , HttpStatus.OK);
     }
 

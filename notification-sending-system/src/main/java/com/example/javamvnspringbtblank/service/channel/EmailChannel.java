@@ -21,17 +21,19 @@ public class EmailChannel implements Channel {
 
     private final Logger logger = LoggerFactory.getLogger(EmailChannel.class);
 
-    @Autowired
-    private Producer producer;
+//    @Autowired
+//    private Producer producer;
+
 
     @Override
-    public void notify(Notification notification) {
+    public void notify(Producer producer, Notification notification) {
         // todo: remove it
         System.out.println(">>> " + notification.getMessage());
 
         Notification noti = Optional.ofNullable(notification).orElse(new BasicNotification(1L, ""));
 
-        ListenableFuture<SendResult<String, String>> listenableFuture = this.producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
+//        ListenableFuture<SendResult<String, String>> listenableFuture = this.producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
+        ListenableFuture<SendResult<String, String>> listenableFuture = producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
 
         SendResult<String, String> result = null;
         try {

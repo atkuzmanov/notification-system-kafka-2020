@@ -1,5 +1,6 @@
 package com.example.javamvnspringbtblank.service.outbound;
 
+import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.Notification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import com.example.javamvnspringbtblank.service.channel.Channel;
@@ -29,10 +30,10 @@ public class ChannelNotificationService implements NotificationService {
      */
     @Override
     public long notifyAll(Notification notification) {
-        for (Channel c : factory.getChannels()) {
-            notification.setNotificationId(notificationId.getAndIncrement());
-            c.notify(notification);
-        }
+//        for (Channel c : factory.getChannels()) {
+//            notification.setNotificationId(notificationId.getAndIncrement());
+//            c.notify(notification);
+//        }
         return notificationId.longValue();
     }
 
@@ -43,10 +44,10 @@ public class ChannelNotificationService implements NotificationService {
      * @param notification
      * @return notification id
      */
-    public long notify(NotificationChannelType channelType, Notification notification) {
+    public long notify(Producer producer, NotificationChannelType channelType, Notification notification) {
         notification.setNotificationId(notificationId.getAndIncrement());
         Channel channelToNotify = factory.get(channelType);
-        channelToNotify.notify(notification);
+        channelToNotify.notify(producer, notification);
         return notificationId.longValue();
     }
 }
