@@ -2,6 +2,7 @@
 
 ---
 
+For Docker container, to be packaged well:
 ```sh
 mvn clean package install spring-boot:repackage -DskipTests
 ```
