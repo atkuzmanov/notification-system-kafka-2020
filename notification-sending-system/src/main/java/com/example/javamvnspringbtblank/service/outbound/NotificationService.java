@@ -6,5 +6,5 @@ import com.example.javamvnspringbtblank.model.NotificationChannelType;
 
 public interface NotificationService {
     long notify(Producer producer, NotificationChannelType channelType, Notification notification);
-    long notifyAll(Notification notification);
+    long notifyAll(Producer producer, Notification notification);
 }

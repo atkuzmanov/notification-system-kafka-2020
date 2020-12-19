@@ -29,11 +29,11 @@ public class ChannelNotificationService implements NotificationService {
      * @return the notification id
      */
     @Override
-    public long notifyAll(Notification notification) {
-//        for (Channel c : factory.getChannels()) {
-//            notification.setNotificationId(notificationId.getAndIncrement());
-//            c.notify(notification);
-//        }
+    public long notifyAll(Producer producer, Notification notification) {
+        for (Channel c : factory.getChannels()) {
+            notification.setNotificationId(notificationId.getAndIncrement());
+            c.notify(producer, notification);
+        }
         return notificationId.longValue();
     }
 

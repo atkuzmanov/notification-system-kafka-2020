@@ -1,5 +1,6 @@
 package com.example.javamvnspringbtblank;
 
+import com.example.javamvnspringbtblank.kafka.Consumer;
 import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.BasicNotification;
 import com.example.javamvnspringbtblank.model.Notification;
@@ -27,8 +28,9 @@ import static org.hamcrest.Matchers.is;
 class ChannelNotificationServiceTest {
     private NotificationService service;
     private ChannelFactory factory;
-    @Mock private Producer producer;
     @Mock private KafkaTemplate<String, String> kafkaTemplate;
+    @Mock private Producer producer;
+    @Mock private Consumer consumer;
 
     @BeforeEach
     public void setUp() throws Exception {
