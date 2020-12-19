@@ -129,6 +129,7 @@ class ChannelNotificationServiceTest {
 //        given(producer.sendMessage(topic, key, testMsg)).willReturn(responseFuture);
 //        given(responseFuture.get()).willReturn(sendResult);
 
+        
 //        doAnswer(invocationOnMock -> {
 //            ListenableFutureCallback listenableFutureCallback = invocationOnMock.getArgument(0);
 //            listenableFutureCallback.onSuccess(sendResult);
