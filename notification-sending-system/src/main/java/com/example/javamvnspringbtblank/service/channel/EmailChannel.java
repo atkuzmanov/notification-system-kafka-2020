@@ -21,10 +21,6 @@ public class EmailChannel implements Channel {
 
     private final Logger logger = LoggerFactory.getLogger(EmailChannel.class);
 
-//    @Autowired
-//    private Producer producer;
-
-
     @Override
     public void notify(Producer producer, Notification notification) {
         // todo: remove it
