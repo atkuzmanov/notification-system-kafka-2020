@@ -4,7 +4,9 @@ example:
 spring:
   kafka:
 #    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
-    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
+    bootstrap-servers: ${kafka_bootstrap_servers:kafka:9093}
+#    bootstrap-servers: ${kafka_bootstrap_servers:kafka:9092}
+#    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
 #    bootstrap-servers: ${kafka_bootstrap_servers:notification-sending-system_kafka_1:9092}
 #    bootstrap-servers: ${kafka_bootstrap_servers}
 #    bootstrap-servers: localhost:9092
