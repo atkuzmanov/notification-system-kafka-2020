@@ -1,6 +1,7 @@
 package com.example.javamvnspringbtblank.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "basicnotification")
@@ -15,11 +16,6 @@ public class BasicNotification extends NotificationBase {
     public long getNotificationId() {
         return notificationId;
     }
-//
-//    public void setNotificationId(long notificationId) {
-//        this.notificationId = notificationId;
-//    }
-
 
     public String getMessage() {
         return message;
@@ -47,6 +43,24 @@ public class BasicNotification extends NotificationBase {
         return message;
     }
 
-    // todo: toString()
-    // todo: override equals() & hashCode() methods
+    @Override
+    public String toString() {
+        return "BasicNotification with notificationId: [" + notificationId + "] and message : [" + message + "].";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (!(o instanceof BasicNotification)) {
+            return false;
+        }
+        BasicNotification basicNotification = (BasicNotification) o;
+        return notificationId == basicNotification.notificationId &&
+                Objects.equals(message, basicNotification.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(notificationId, message);
+    }
 }

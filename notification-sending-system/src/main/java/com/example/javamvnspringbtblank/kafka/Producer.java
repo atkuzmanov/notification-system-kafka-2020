@@ -18,7 +18,6 @@ public class Producer {
     }
 
     public ListenableFuture<SendResult<String, String>> sendMessage(String topic, String key, String message) {
-
         return this.kafkaTemplate.send(topic, key, message);
     }
 }

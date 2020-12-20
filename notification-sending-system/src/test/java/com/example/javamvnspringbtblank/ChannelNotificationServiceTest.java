@@ -88,7 +88,7 @@ public class ChannelNotificationServiceTest {
 
         long resultId = service.notify(producer, NotificationChannelType.email, TestUtils.generateNotification());
 
-        assertThat("Correct notification id is returned.", resultId == 2L);
+        assertThat("Correct notification id is returned.", resultId == 1L);
         verify(kafkaTemplate, times(1)).send(topic, key, testMsg);
     }
 
@@ -110,7 +110,7 @@ public class ChannelNotificationServiceTest {
 
         long resultId = service.notify(producer, NotificationChannelType.email, TestUtils.generateNotification(testMsg));
 
-        assertThat("Correct notification id is returned.", resultId == 2L);
+        assertThat("Correct notification id is returned.", resultId == 1L);
         verify(kafkaTemplate, times(1)).send(topic, key, testMsg);
     }
 
