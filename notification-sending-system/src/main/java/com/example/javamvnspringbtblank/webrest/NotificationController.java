@@ -49,11 +49,4 @@ public class NotificationController {
         return new ResponseEntity<>("Notification [" + notifId +
                 "] successfully sent to all channels.", HttpStatus.OK);
     }
-
-//    @PostMapping("/save")
-//    public @ResponseBody
-//    ResponseEntity<String> notifyAll(@RequestBody BasicNotification notification) {
-//        long notifId = service.notifyAll(producer, notification);
-//        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to all channels." , HttpStatus.OK);
-//    }
 }

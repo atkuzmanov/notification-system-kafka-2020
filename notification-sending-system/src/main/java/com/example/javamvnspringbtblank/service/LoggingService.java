@@ -43,9 +43,9 @@ public class LoggingService {
         rootNode.put("Exception message", e.getMessage());
         rootNode.put("Exception localized message", e.getLocalizedMessage());
         rootNode.put("Exception cause", String.valueOf(e.getCause()));
-//        if (LOG.isDebugEnabled()) {
+        if (LOG.isDebugEnabled()) {
             rootNode.put("Exception stacktrace", Arrays.toString(e.getStackTrace()));
-//        }
+        }
         LOG.error("EXCEPTION_OCCURRED:" + rootNode.toPrettyString());
     }
 }

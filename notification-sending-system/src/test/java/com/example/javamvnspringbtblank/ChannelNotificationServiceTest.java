@@ -13,8 +13,6 @@ import org.apache.kafka.common.TopicPartition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-//import org.junit.jupiter.api.AfterEach;
-//import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -62,8 +60,6 @@ public class ChannelNotificationServiceTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
-//        sendResult = mock(SendResult.class);
-//        responseFuture = mock(ListenableFuture.class);
     }
 
     @After
@@ -114,8 +110,6 @@ public class ChannelNotificationServiceTest {
         verify(kafkaTemplate, times(1)).send(topic, key, testMsg);
     }
 
-    //    @Test(expected = RuntimeException.class)
-//    public void canPublishToKafkaNull() throws ExecutionException, InterruptedException {
     @Test(expected = NotificationException.class)
     public void canPublishToKafkaNull() throws ExecutionException, InterruptedException {
         String key = "IN_KEY";
@@ -126,16 +120,12 @@ public class ChannelNotificationServiceTest {
 
         RecordMetadata recordMetadata = new RecordMetadata(new TopicPartition(topic, partition), offset, 0L, 0L, 0L, 0, 0);
 
-//        when(channelFactory.get(NotificationChannelType.email)).thenReturn(emailChannel);
         when(channelFactory.get(NotificationChannelType.sms)).thenReturn(smsChannel);
-//        when(sendResult.getRecordMetadata()).thenReturn(recordMetadata);
         when(kafkaTemplate.send(topic, key, testMsg)).thenReturn(responseFuture);
         when(producer.sendMessage(topic, key, testMsg)).thenReturn(responseFuture);
-//        when(responseFuture.get()).thenReturn(sendResult);
 
         service.notify(producer, NotificationChannelType.sms, TestUtils.generateNotification(testMsg));
 
-//        assertThat("Correct notification id is returned.", resultId == 2L);
         verify(kafkaTemplate, times(0)).send(topic, key, testMsg);
     }
 }

@@ -3,20 +3,13 @@ example:
     consumer-enabled: ${consumer-enabled:true}
 spring:
   kafka:
-#    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
     bootstrap-servers: ${kafka_bootstrap_servers:kafka:9093}
-#    bootstrap-servers: ${kafka_bootstrap_servers:kafka:9092}
-#    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
-#    bootstrap-servers: ${kafka_bootstrap_servers:notification-sending-system_kafka_1:9092}
-#    bootstrap-servers: ${kafka_bootstrap_servers}
-#    bootstrap-servers: localhost:9092
     properties:
       sasl:
         jaas:
           config: org.apache.kafka.common.security.plain.PlainLoginModule required username=${kafka_username:'admin'} password=${kafka_password:'admin-secret'};
         mechanism: PLAIN
       security:
-#        protocol: SASL_PLAINTEXT
         protocol: PLAINTEXT
     consumer:
       auto-offset-reset: earliest

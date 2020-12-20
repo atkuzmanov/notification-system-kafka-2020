@@ -5,9 +5,7 @@ import com.example.javamvnspringbtblank.model.Notification;
 
 public class TestUtils {
     protected static Notification generateNotification() {
-        Notification notification = new BasicNotification();
-        notification.setMessage("Test message 1.");
-        return notification;
+        return generateNotification("Test message 1.");
     }
 
     protected static Notification generateNotification(String testMsg) {
