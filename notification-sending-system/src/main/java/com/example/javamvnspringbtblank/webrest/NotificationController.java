@@ -39,7 +39,7 @@ public class NotificationController {
         long notifId = service.notify(producer, channelType, notification);
         long persistedNotifId = notificationDao.save(notification).getNotificationId();
         return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType
-                + "] and persisted with id [ \" + persistedNotifId + \"].\".", HttpStatus.OK);
+                + "] and persisted with id [" + persistedNotifId + "].", HttpStatus.OK);
     }
 
     @PostMapping("/notifyAll")
