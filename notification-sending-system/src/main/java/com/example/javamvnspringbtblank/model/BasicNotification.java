@@ -28,15 +28,6 @@ public class BasicNotification extends NotificationBase {
     public BasicNotification() {
     }
 
-    public BasicNotification(String msg) {
-        this.message = msg;
-    }
-
-    public BasicNotification(long notificationId, String msg) {
-        this.notificationId = notificationId;
-        this.message = msg;
-    }
-
     @Override
     @Column(name = "message")
     public String message() {

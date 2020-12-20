@@ -3,7 +3,7 @@ package com.example.javamvnspringbtblank.model;
 public enum NotificationChannelType {
     email("email"), sms("sms"), slack("slack");
 
-    private String name;
+    private final String name;
 
     NotificationChannelType(String name) {
         this.name = name;
