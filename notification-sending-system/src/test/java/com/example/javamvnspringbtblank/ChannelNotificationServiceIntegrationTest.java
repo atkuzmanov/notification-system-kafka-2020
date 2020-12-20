@@ -13,13 +13,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
-import org.springframework.kafka.test.context.EmbeddedKafka;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
 
-import static com.example.javamvnspringbtblank.ChannelNotificationServiceTest.generateNotification;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -77,6 +74,6 @@ public class ChannelNotificationServiceIntegrationTest {
     }
 
     private String generateMessageJson() throws IOException {
-        return objectMapper.writeValueAsString(generateNotification());
+        return objectMapper.writeValueAsString(TestUtils.generateNotification());
     }
 }

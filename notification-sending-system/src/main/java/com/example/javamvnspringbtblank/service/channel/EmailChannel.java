@@ -22,9 +22,6 @@ public class EmailChannel implements Channel {
     public void notify(Producer producer, Notification notification) {
         Notification noti = Optional.ofNullable(notification).orElse(new BasicNotification(1L, ""));
 
-        // todo: remove it
-        System.out.println(">>> " + noti.getMessage());
-
         ListenableFuture<SendResult<String, String>> listenableFuture = producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
 
         SendResult<String, String> result = null;
