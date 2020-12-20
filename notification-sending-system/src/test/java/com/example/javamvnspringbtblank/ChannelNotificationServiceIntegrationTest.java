@@ -3,7 +3,6 @@ package com.example.javamvnspringbtblank;
 import com.example.javamvnspringbtblank.kafka.Consumer;
 import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
-import com.example.javamvnspringbtblank.service.channel.EmailChannel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,12 +21,11 @@ import java.io.IOException;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = {App.class, Producer.class, Consumer.class, EmailChannel.class},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @DirtiesContext
-@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9093", "port=9093" })
+@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9093", "port=9093"})
 public class ChannelNotificationServiceIntegrationTest {
     private static final String BASE_URL = "/notification-service";
     private static final String HOST = "http://localhost:";
