@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
+import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
@@ -24,8 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @AutoConfigureMockMvc
-//@DirtiesContext
-//@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
+@DirtiesContext
+@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9093", "port=9093" })
 public class ChannelNotificationServiceIntegrationTest {
     private static final String BASE_URL = "/notification-service";
     private static final String HOST = "http://localhost:";
@@ -36,12 +38,11 @@ public class ChannelNotificationServiceIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @Autowired
+    private Consumer consumer;
 
-//    @Autowired
-//    private Consumer consumer;
-//
-//    @Autowired
-//    private Producer producer;
+    @Autowired
+    private Producer producer;
 
     @LocalServerPort
     private int port;
