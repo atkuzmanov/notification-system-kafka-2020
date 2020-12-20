@@ -1,10 +1,12 @@
 package com.example.javamvnspringbtblank;
 
+import com.example.javamvnspringbtblank.exception.NotificationException;
 import com.example.javamvnspringbtblank.kafka.Consumer;
 import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import com.example.javamvnspringbtblank.service.channel.ChannelFactory;
 import com.example.javamvnspringbtblank.service.channel.EmailChannel;
+import com.example.javamvnspringbtblank.service.channel.SMSChannel;
 import com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.TopicPartition;
@@ -35,6 +37,9 @@ public class ChannelNotificationServiceTest {
 
     @InjectMocks
     EmailChannel emailChannel;
+
+    @InjectMocks
+    SMSChannel smsChannel;
 
     @InjectMocks
     private ChannelNotificationService service;
@@ -109,9 +114,10 @@ public class ChannelNotificationServiceTest {
         verify(kafkaTemplate, times(1)).send(topic, key, testMsg);
     }
 
-    @Test(expected = RuntimeException.class)
+    //    @Test(expected = RuntimeException.class)
 //    public void canPublishToKafkaNull() throws ExecutionException, InterruptedException {
-    public void canPublishToKafkaNull() {
+    @Test(expected = NotificationException.class)
+    public void canPublishToKafkaNull() throws ExecutionException, InterruptedException {
         String key = "IN_KEY";
         String topic = "INPUT_DATA";
         long offset = 1L;
@@ -121,12 +127,13 @@ public class ChannelNotificationServiceTest {
         RecordMetadata recordMetadata = new RecordMetadata(new TopicPartition(topic, partition), offset, 0L, 0L, 0L, 0, 0);
 
 //        when(channelFactory.get(NotificationChannelType.email)).thenReturn(emailChannel);
+        when(channelFactory.get(NotificationChannelType.sms)).thenReturn(smsChannel);
 //        when(sendResult.getRecordMetadata()).thenReturn(recordMetadata);
         when(kafkaTemplate.send(topic, key, testMsg)).thenReturn(responseFuture);
         when(producer.sendMessage(topic, key, testMsg)).thenReturn(responseFuture);
 //        when(responseFuture.get()).thenReturn(sendResult);
 
-        long resultId = service.notify(producer, NotificationChannelType.sms, TestUtils.generateNotification(testMsg));
+        service.notify(producer, NotificationChannelType.sms, TestUtils.generateNotification(testMsg));
 
 //        assertThat("Correct notification id is returned.", resultId == 2L);
         verify(kafkaTemplate, times(0)).send(topic, key, testMsg);

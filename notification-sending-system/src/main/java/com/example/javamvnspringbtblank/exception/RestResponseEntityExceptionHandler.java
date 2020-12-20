@@ -31,6 +31,15 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     /**
+     * Catch custom NotificationException exceptions.
+     */
+    @ExceptionHandler({NotificationException.class})
+    @ResponseBody
+    public ResponseEntity<?> handleNotificationException(Exception e) {
+        return errorResponse(e, HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    /**
      * Handle failures commonly thrown from code.
      */
     @ExceptionHandler({InvocationTargetException.class, IllegalArgumentException.class, ClassCastException.class,
