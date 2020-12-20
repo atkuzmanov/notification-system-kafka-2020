@@ -6,13 +6,10 @@ import com.example.javamvnspringbtblank.model.Notification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -28,7 +25,6 @@ public class EmailChannel implements Channel {
         // todo: remove it
         System.out.println(">>> " + noti.getMessage());
 
-//        ListenableFuture<SendResult<String, String>> listenableFuture = this.producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
         ListenableFuture<SendResult<String, String>> listenableFuture = producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
 
         SendResult<String, String> result = null;

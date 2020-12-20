@@ -14,7 +14,6 @@ services:
     expose:
       - "9092"
       - "9093"
-#      - "19092"
     environment:
 #      KAFKA_BROKER_ID: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
