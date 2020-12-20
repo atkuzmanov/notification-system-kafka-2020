@@ -1,6 +1,12 @@
 package com.example.javamvnspringbtblank.model;
 
+import javax.persistence.*;
+
+@Entity
 public class BasicNotification extends NotificationBase {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long notificationId;
 
     private String message;
@@ -8,10 +14,10 @@ public class BasicNotification extends NotificationBase {
     public long getNotificationId() {
         return notificationId;
     }
-
-    public void setNotificationId(long notificationId) {
-        this.notificationId = notificationId;
-    }
+//
+//    public void setNotificationId(long notificationId) {
+//        this.notificationId = notificationId;
+//    }
 
 
     public String getMessage() {
@@ -35,6 +41,7 @@ public class BasicNotification extends NotificationBase {
     }
 
     @Override
+    @Column(name = "message")
     public String message() {
         return message;
     }

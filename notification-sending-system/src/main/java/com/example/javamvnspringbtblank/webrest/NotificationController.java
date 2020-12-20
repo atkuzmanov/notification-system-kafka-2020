@@ -1,5 +1,6 @@
 package com.example.javamvnspringbtblank.webrest;
 
+import com.example.javamvnspringbtblank.dao.NotificationDao;
 import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.BasicNotification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping({"/", "/notification-service"})
 public class NotificationController {
 
+    @Autowired
+    private NotificationDao notificationDao;
+
     private final Producer producer;
 
     @Autowired
-    NotificationController(Producer producer){
+    NotificationController(Producer producer) {
         this.producer = producer;
     }
 
@@ -33,13 +37,22 @@ public class NotificationController {
     public @ResponseBody
     ResponseEntity<String> notify(@PathVariable NotificationChannelType channelType, @RequestBody BasicNotification notification) {
         long notifId = service.notify(producer, channelType, notification);
-        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType + "]." , HttpStatus.OK);
+        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType + "].", HttpStatus.OK);
     }
 
     @PostMapping("/notifyAll")
     public @ResponseBody
     ResponseEntity<String> notifyAll(@RequestBody BasicNotification notification) {
         long notifId = service.notifyAll(producer, notification);
-        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to all channels." , HttpStatus.OK);
+        long persistedNotifId = notificationDao.save(notification).getNotificationId();
+        return new ResponseEntity<>("Notification [" + notifId +
+                "] successfully sent to all channels and persisted with id [ " + persistedNotifId + "].", HttpStatus.OK);
     }
+
+//    @PostMapping("/save")
+//    public @ResponseBody
+//    ResponseEntity<String> notifyAll(@RequestBody BasicNotification notification) {
+//        long notifId = service.notifyAll(producer, notification);
+//        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to all channels." , HttpStatus.OK);
+//    }
 }

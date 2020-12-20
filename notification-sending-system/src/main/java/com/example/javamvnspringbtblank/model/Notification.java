@@ -1,9 +1,9 @@
 package com.example.javamvnspringbtblank.model;
 
 public interface Notification {
-    long getNotificationId();
-
-    void setNotificationId(long notificationId);
+//    long getNotificationId();
+//
+//    void setNotificationId(long notificationId);
 
     String getMessage();
 

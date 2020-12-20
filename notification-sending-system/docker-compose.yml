@@ -45,6 +45,21 @@ services:
       - zookeeper
     volumes:
       - ./:/etc/kafka
+  notificationmysql:
+    container_name: notificationmysql
+    image: "mysql:8.0.21"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_example
+      - MYSQL_USER=springuser
+      - MYSQL_PASSWORD=ThePassword
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql:ro
   notification-sending-system:
     container_name: notification-sending-system
     build:
