@@ -31,7 +31,7 @@ public class ChannelNotificationService implements NotificationService {
     @Override
     public long notifyAll(Producer producer, Notification notification) {
         for (Channel c : factory.getChannels()) {
-            notification.setNotificationId(notificationId.getAndIncrement());
+//            notification.setNotificationId(notificationId.getAndIncrement());
             c.notify(producer, notification);
         }
         return notificationId.longValue();
@@ -45,7 +45,7 @@ public class ChannelNotificationService implements NotificationService {
      * @return notification id
      */
     public long notify(Producer producer, NotificationChannelType channelType, Notification notification) {
-        notification.setNotificationId(notificationId.getAndIncrement());
+//        notification.setNotificationId(notificationId.getAndIncrement());
         Channel channelToNotify = factory.get(channelType);
         channelToNotify.notify(producer, notification);
         return notificationId.longValue();

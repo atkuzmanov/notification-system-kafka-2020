@@ -3,6 +3,7 @@ package com.example.javamvnspringbtblank.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "basicnotification")
 public class BasicNotification extends NotificationBase {
 
     @Id

@@ -37,16 +37,17 @@ public class NotificationController {
     public @ResponseBody
     ResponseEntity<String> notify(@PathVariable NotificationChannelType channelType, @RequestBody BasicNotification notification) {
         long notifId = service.notify(producer, channelType, notification);
-        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType + "].", HttpStatus.OK);
+        long persistedNotifId = notificationDao.save(notification).getNotificationId();
+        return new ResponseEntity<>("Notification [" + notifId + "] successfully sent to channel [" + channelType
+                + "] and persisted with id [ \" + persistedNotifId + \"].\".", HttpStatus.OK);
     }
 
     @PostMapping("/notifyAll")
     public @ResponseBody
     ResponseEntity<String> notifyAll(@RequestBody BasicNotification notification) {
         long notifId = service.notifyAll(producer, notification);
-        long persistedNotifId = notificationDao.save(notification).getNotificationId();
         return new ResponseEntity<>("Notification [" + notifId +
-                "] successfully sent to all channels and persisted with id [ " + persistedNotifId + "].", HttpStatus.OK);
+                "] successfully sent to all channels.", HttpStatus.OK);
     }
 
 //    @PostMapping("/save")
