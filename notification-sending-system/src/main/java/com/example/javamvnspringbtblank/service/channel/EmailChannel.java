@@ -20,9 +20,11 @@ public class EmailChannel implements Channel {
 
     @Override
     public void notify(Producer producer, Notification notification) {
-        Notification nonNullNotification = Optional.ofNullable(notification).orElseThrow(() -> new NotificationException("Notification was null."));
+        Notification nonNullNotification = Optional.ofNullable(notification)
+                .orElseThrow(() -> new NotificationException("Notification was null."));
 
-        ListenableFuture<SendResult<String, String>> listenableFuture = producer.sendMessage("INPUT_DATA", "IN_KEY", nonNullNotification.getMessage());
+        ListenableFuture<SendResult<String, String>> listenableFuture =
+                producer.sendMessage("INPUT_DATA", "IN_KEY", nonNullNotification.getMessage());
 
         SendResult<String, String> result = null;
         try {
@@ -30,7 +32,8 @@ public class EmailChannel implements Channel {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        logger.info(String.format("Produced:\ntopic: %s\noffset: %d\npartition: %d\nvalue size: %d", result.getRecordMetadata().topic(),
+        logger.info(String.format("Produced:\ntopic: %s\noffset: %d\npartition: %d\nvalue size: %d",
+                result.getRecordMetadata().topic(),
                 result.getRecordMetadata().offset(),
                 result.getRecordMetadata().partition(), result.getRecordMetadata().serializedValueSize()));
     }

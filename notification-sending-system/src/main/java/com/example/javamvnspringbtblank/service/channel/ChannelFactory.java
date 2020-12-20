@@ -1,6 +1,5 @@
 package com.example.javamvnspringbtblank.service.channel;
 
-import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.javamvnspringbtblank.model.NotificationChannelType.*;
+import static com.example.javamvnspringbtblank.model.NotificationChannelType.valueOf;
 
 @Component
 public class ChannelFactory {
