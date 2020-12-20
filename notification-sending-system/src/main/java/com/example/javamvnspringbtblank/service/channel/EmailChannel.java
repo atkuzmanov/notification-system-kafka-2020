@@ -1,7 +1,7 @@
 package com.example.javamvnspringbtblank.service.channel;
 
+import com.example.javamvnspringbtblank.exception.NotificationException;
 import com.example.javamvnspringbtblank.kafka.Producer;
-import com.example.javamvnspringbtblank.model.BasicNotification;
 import com.example.javamvnspringbtblank.model.Notification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public class EmailChannel implements Channel {
 
     @Override
     public void notify(Producer producer, Notification notification) {
-        Notification noti = Optional.ofNullable(notification).orElse(new BasicNotification(1L, ""));
+        Notification noti = Optional.ofNullable(notification).orElseThrow(() -> new NotificationException("Notification was null."));
 
         ListenableFuture<SendResult<String, String>> listenableFuture = producer.sendMessage("INPUT_DATA", "IN_KEY", noti.getMessage());
 
