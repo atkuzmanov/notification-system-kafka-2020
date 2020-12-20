@@ -66,7 +66,7 @@ sms, slack) and be easily extensible to support more channels in the future.
         - [x] - No graphical User Interface (UX) required
 
 - Requirement `2.` analysis and breakdown:    
-    - `TODO` research if containerization with Docker is required, so it can be scaled in Kubernetes or Cloud.
+    - [x] `TODO` research if containerization with Docker is required, so it can be scaled in Kubernetes or Cloud.
 
 - Requirement `3.` analysis and breakdown:
     - Implement "at least once" logic to guarantee SLA.
