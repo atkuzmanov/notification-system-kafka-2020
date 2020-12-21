@@ -282,6 +282,21 @@ A lot of `research`, `time` and `experiments` went into overcoming the following
 
 - Debugging in a distributed environment with `Docker` and `Docker Compose`.
 
+Some of the encountered problems and solutions are described well as scenarios in this website: <https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/>
+
+Pictures describing encountered problems:
+
+![listeners1.014.png](additional_resources/listeners1.014.png)
+
+![listeners1.015.png](additional_resources/listeners1.015.png)
+
+Picture describing current solution:
+
+![listeners1.019.png](additional_resources/listeners1.019.png)
+
+> References:
+> <https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/>
+
 ---
 
 ## Install, Setup, Running and Deployment instructions
