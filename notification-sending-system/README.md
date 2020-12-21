@@ -9,7 +9,9 @@
   - [Additional requirements clarifications](#additional-requirements-clarifications)
   - [Description](#description)
   - [System components and more technical details and functionalities](#system-components-and-more-technical-details-and-functionalities)
+  - [Challenges](#challenges)
   - [Install, Setup, Running and Deployment instructions](#install-setup-running-and-deployment-instructions)
+  - [Demo](#demo)
   - [Further development](#further-development)
   - [References](#references)
 
@@ -92,13 +94,37 @@ Please see the full configuration file for more details:
 
 For the purpose of the MVP the chosen interface is REST endpoints.
 
-- `/notify` endpoint
+- `/notify/{channelType}` endpoint
+  
+  - Used in this format for example, where `channelType` is replaced with `email: <http://localhost:8081/notification-service/notify/email>
+  - Example request:
+  
+      ```sh
+      curl --location --request POST 'http://localhost:8081/notification-service/notify/email' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{  
+      "message": "Body of message 1."
+      }'
+      ```
 
 - `/notifyAll` endpoint
+  
+  - Currently not implemented as per [Additional requirements clarifications](#additional-requirements-clarifications)
+  - As a good practice it currently returns a REST response:
+
+      ```sh
+      501 Not Implemented
+
+      Notify method is not implemented yet.
+      ```
 
 ---
 
 ## System components and more technical details and functionalities
+
+---
+
+## Challenges
 
 ---
 
@@ -125,6 +151,7 @@ For Maven help, please see:
 
 ---
 
+## Demo
 
 ---
 
