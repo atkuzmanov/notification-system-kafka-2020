@@ -5,6 +5,7 @@
 - [notification-sending-system](#notification-sending-system)
   - [README](#readme)
   - [Description](#description)
+  - [System components and more technical details and functionalities](#system-components-and-more-technical-details-and-functionalities)
   - [Install, Setup and Running instructions](#install-setup-and-running-instructions)
   - [Further development](#further-development)
   - [References](#references)
@@ -42,8 +43,14 @@ This design allows when the system is deployed to production to be deployed to `
 3. `Requirement 3.` The system must guarantee an *"at least once"* SLA for sending the message.
 
 The system is designed to guarantee `at least once` SLA for sending messages by utilizing `Apache Kafka's` Producer functionality.
+The configuraiton which allows us to achieve this is setting the `acks: 1` and `retries: 3` parameters.
+Here is an excerpt from the full configuration file:
 
-```shell
+```yml
+    producer:
+      client-id: example
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       # The following properties `acks: 1` and `retries: 3` allow us to achieve the desired guarantee of the system,
       # that an "at least once" SLA for sending the message, is met.
       # Please see below for more details:
@@ -55,11 +62,21 @@ The system is designed to guarantee `at least once` SLA for sending messages by 
       # References:
       # https://dzone.com/articles/kafka-producer-delivery-semantics
       # http://kafka.apache.org/090/documentation.html#producerconfigs
+      acks: 1
+      retries: 3
 ```
 
 Please see the full configuration file for more details:
 
 - [kafka.yml](src/main/resources/kafka.yml)
+
+4. `Requirement 4.` The interface for accepting notifications to be sent can be chosen on your own discretion.
+
+
+
+---
+
+## System components and more technical details and functionalities
 
 ---
 
