@@ -10,6 +10,7 @@
   - [Description](#description)
     - [Class diagram](#class-diagram)
     - [POSTMAN REST requests collection](#postman-rest-requests-collection)
+    - [System Design high-level](#system-design-high-level)
     - [System high-level components and services](#system-high-level-components-and-services)
     - [System code base components and more technical details and functionalities](#system-code-base-components-and-more-technical-details-and-functionalities)
   - [Challenges](#challenges)
@@ -148,6 +149,8 @@ The following endpoints can be used to trigger a notification to be sent.
 
 ***NOTE:*** The system provides additional functionality of persisting notifications which have gone through it, in a `MySQL database`.
 
+### System Design high-level
+
 ### System high-level components and services
 
 - Main code base
@@ -277,6 +280,17 @@ A lot of `research`, `time` and `experiments` went into overcoming the following
 
 ## Install, Setup, Running and Deployment instructions
 
+Prerequisits:
+
+- Computer set up with relevant specs
+- Java
+- Spring Boot
+- Maven
+- Docker
+- Docker Compose
+- IntelliJ Idea CE
+  - Docker plug-in
+
 ### Setting up the `/etc/hosts` file
 
 The following is required to allow the Docker containers to communicate while running on your local machine.
@@ -321,7 +335,7 @@ docker-compose up --build --remove-orphans
 
 ### Remote debugging with IntelliJ Idea CE
 
-- For remote debugging in Dockerfile:
+- For remote debugging add the following line in the `Dockerfile`:
 
 ```shell
 ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.security.egd=file:/dev/./urandom
