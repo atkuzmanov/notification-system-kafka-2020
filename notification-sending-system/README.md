@@ -24,7 +24,9 @@
   - [Remote debugging config demo](#remote-debugging-config-demo)
   - [Remote debugging demo](#remote-debugging-demo)
   - [Further development](#further-development)
-  - [Related projects](#related-projects)
+  - [Other projects](#other-projects)
+  - [scala notice processor notification service pseudo code](#scala-notice-processor-notification-service-pseudo-code)
+  - [genesys-java-springboot-docker](#genesys-java-springboot-docker)
   - [References](#references)
 
 <!-- /TOC -->
@@ -442,10 +444,82 @@ For this project to be advanced to the next level, the following should be taken
   - Add Swagger API documentation
 - More resilience and availability through supporting more queue technologies both inbound and outbound, such as:
   - Kafka and/or AWS SNS + SQS
+- Add `Lombok` and `Auto Value` to reduce Java boilerplate
 
 ---
 
-## Related projects
+## Other projects
+
+Please check out some of my other projects.
+
+## scala notice processor notification service pseudo code
+
+[blueprint scala notice processor notification service pseudo code wip temp example 2018-10-14](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14)
+
+This project has:
+
+- [Custom implementation of retry logic for a block of code](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14/blob/master/src/main/scala/exampleRetries/ExampleRetryABlockOfCodeXTimes.scala)
+
+- [Example Service making use of custom retry logic](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14/blob/master/src/main/scala/exampleOneDCDown/ExampleDataCentreVerificationService.scala)
+
+- [Custom Concurrency Capacity Manager](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14/blob/master/src/main/scala/exampleCapacity/CapacityManagerExample.scala)
+
+- [Example Service making use of the Custom Concurrency Capacity Manager](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14/blob/master/src/main/scala/exampleCapacity/MessageProcessorExample.scala)
+
+- [Custom Thread Pool](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14/blob/master/src/main/scala/exampleCapacity/CustomExecutionContextWithCustomThreadPool.scala)
+
+## genesys-java-springboot-docker
+
+[genesys-java-springboot-docker](https://github.com/atkuzmanov/genesys-java-springboot-docker)
+
+The project comes incorporating or pre-configured to be compatible with the following technologies:
+
+- [Java](https://www.java.com/en/)
+- [Spring](https://spring.io/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+    - [Spring Cloud](https://spring.io/projects/spring-cloud)
+- [Aspect Oriented Programming (AOP)](https://en.wikipedia.org/wiki/Aspect-oriented_programming)
+    - [Spring AOP](https://docs.spring.io/spring-framework/docs/4.3.12.RELEASE/spring-framework-reference/htmlsingle/#overview-aop-instrumentation)
+    - [AspectJ](https://www.eclipse.org/aspectj/)
+- [Web & REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
+    - [Spring MVC](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html)
+        - [Controllers](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-controller)
+        - [Filters](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#filters)
+        - [Exception Handling](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html#mvc-exceptionhandlers)
+    - [Thymeleaf templates](https://www.thymeleaf.org/documentation.html)
+        - [HTML](https://www.w3schools.com/html/html_intro.asp)
+        - [CSS](https://www.w3schools.com/css/css_intro.asp)
+- [Testing](https://en.wikipedia.org/wiki/Software_testing)
+    - [Spring Boot Test](https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/html/boot-features-testing.html)
+        - [JUnit](https://junit.org/junit5/)
+        - [Unit Testing](https://en.wikipedia.org/wiki/Unit_testing#:~:text=Unit%20tests%20are%20typically%20automated,an%20individual%20function%20or%20procedure.)
+        - [Integration Testing](https://en.wikipedia.org/wiki/Integration_testing)
+- [Spring Data](https://spring.io/projects/spring-data)
+    - [MySQL](https://dev.mysql.com/doc/connector-j/8.0/en/)
+    - [JPA](https://en.wikipedia.org/wiki/Jakarta_Persistence)
+    - [DAO](https://en.wikipedia.org/wiki/Data_access_object)
+- [Logging](https://en.wikipedia.org/wiki/Log_file)
+    - [Structured Logging in JSON format](https://medium.com/@krishankantsinghal/structured-logging-why-and-how-to-achieve-in-java-33974d22accb)
+    - [Logback](http://logback.qos.ch/)
+    - [SLF4J](http://www.slf4j.org/)
+        - [MDC](http://www.slf4j.org/api/org/slf4j/MDC.html)
+    - [Logstash](https://github.com/elastic/logstash)
+- [Distributed Tracing](https://docs.lightstep.com/docs/understand-distributed-tracing)
+    - [Spring Cloud Sleuth](https://spring.io/projects/spring-cloud-sleuth)
+    - [Zipkin](https://zipkin.io/)
+- [Apache Maven](https://maven.apache.org/index.html)
+    - [Apache Maven Enforcer plugin](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
+- [Apache Tomcat](http://tomcat.apache.org/)
+- [Design Patterns](https://www.oodesign.com/)
+    - [Builder Design Pattern](https://www.oodesign.com/builder-pattern.html)
+- [Docker](https://www.docker.com/)
+    - [Docker-compose](https://docs.docker.com/compose/)
+- [Lombok](https://www.projectlombok.org/)
+- [Google Guava](https://github.com/google/guava)
+
+Also please feel free to checkout my GitHub for other cool bits and bobs:
+
+- [atkuzmanov](https://github.com/atkuzmanov)
 
 ---
 
