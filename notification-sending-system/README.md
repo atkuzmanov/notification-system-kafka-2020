@@ -59,7 +59,7 @@ The system is designed to guarantee `at least once` SLA for sending messages by 
 
 Please see the full configuration file for more details:
 
-- [kafka.yml](../src/main/resources/kafka.yml)
+- [kafka.yml](src/main/resources/kafka.yml)
 
 ---
 
