@@ -190,7 +190,7 @@ The following endpoints can be used to trigger a notification to be sent.
   - Abstract class to allow extensibility and support of different kind of notifications and prevent creation of notification implementations outside of this allowed package structure. This is achieved by a constructor with `default` access encapsulation.
 
 - `com.example.javamvnspringbtblank.model.BasicNotification`
-  - Concrete implementation of the `Notification` interface and `NotificationBase` abstract class abstractions.
+  - Simple POJO concrete implementation of the `Notification` interface and `NotificationBase` abstract class abstractions. Includes annotations for mapping to database tables and fields.
 
 - `com.example.javamvnspringbtblank.model.NotificationChannelType`
   - Enum type is preferred to using interfaces or other methods for containing CONSTANT values. This also allows a good mechanism for implementing a `Factory Design Pattern`, done in the `ChannelFactory.class`.
@@ -218,10 +218,10 @@ The following endpoints can be used to trigger a notification to be sent.
   - A concrete implementation of the `com.example.javamvnspringbtblank.service.outbound.NotificationService` interface. This service provides functionality which can be triggered by the system's REST endpoints to send notifications.
 
 - `com.example.javamvnspringbtblank.service.LoggingService`
-  - A service to facilitate logging by encompassing all common logging related logic.
+  - An utility service to facilitate logging by encompassing all common logging related logic.
 
 - `com.example.javamvnspringbtblank.webrest.LoggingFilter`
-  - A dispatcher servlet filter to capture and log all incoming REST requests and outgoing REST responses. It makes use of `com.example.javamvnspringbtblank.service.LoggingService`.
+  - A servlet level filter to capture and log all incoming REST requests and outgoing REST responses. It makes use of `com.example.javamvnspringbtblank.service.LoggingService`.
 
 - `com.example.javamvnspringbtblank.webrest.NotificationController`
   - A REST controller providing the application with REST endpoints.
@@ -445,6 +445,9 @@ For this project to be advanced to the next level, the following should be taken
 - More resilience and availability through supporting more queue technologies both inbound and outbound, such as:
   - Kafka and/or AWS SNS + SQS
 - Add `Lombok` and `Auto Value` to reduce Java boilerplate
+- Add common formatting and linting for the whole team
+- Add parent pom file
+- Add `Maven Enforcer` plug-in to enforce and manage dependencies versions across the team
 
 ---
 
@@ -456,7 +459,7 @@ Please check out some of my other projects.
 
 [blueprint scala notice processor notification service pseudo code wip temp example 2018-10-14](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14)
 
-This project has:
+This project has (in `pseudo code`):
 
 - [Custom implementation of retry logic for a block of code](https://github.com/atkuzmanov/blueprint-scala-notice-processor-notification-service-pseudo-code-2018-10-14/blob/master/src/main/scala/exampleRetries/ExampleRetryABlockOfCodeXTimes.scala)
 
@@ -528,5 +531,7 @@ Also please feel free to checkout my GitHub for other cool bits and bobs:
 <https://dzone.com/articles/kafka-producer-delivery-semantics>
 
 <http://kafka.apache.org/090/documentation.html#producerconfigs>
+
+<https://github.com/atkuzmanov>
 
 ---

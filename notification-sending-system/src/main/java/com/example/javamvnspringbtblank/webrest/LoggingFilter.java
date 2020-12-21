@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.EnumSet;
 
+/**
+ * A servlet level filter to capture and log all incoming REST requests and outgoing REST responses.
+ * It makes use of `com.example.javamvnspringbtblank.service.LoggingService`.
+ */
 @Component
 @Configuration
 public class LoggingFilter extends OncePerRequestFilter {

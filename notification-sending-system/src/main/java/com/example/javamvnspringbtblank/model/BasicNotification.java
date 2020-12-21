@@ -3,6 +3,10 @@ package com.example.javamvnspringbtblank.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Simple POJO concrete implementation of the `Notification` interface and `NotificationBase` abstract class abstractions.
+ * Includes annotations for mapping to database tables and fields.
+ */
 @Entity
 @Table(name = "basicnotification")
 public class BasicNotification extends NotificationBase {

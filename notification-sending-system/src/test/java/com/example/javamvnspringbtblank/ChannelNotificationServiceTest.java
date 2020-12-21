@@ -27,7 +27,9 @@ import java.util.concurrent.ExecutionException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
-
+/**
+ * Unit tests.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ChannelNotificationServiceTest {
     @Mock

@@ -13,6 +13,12 @@ import org.springframework.util.concurrent.ListenableFuture;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * A concrete implementation of the `com.example.javamvnspringbtblank.service.channel.Channel` interface.
+ * `EmailChannel` makes use of the Kafka `com.example.javamvnspringbtblank.kafka.Producer` to produce the required
+ * message of type `email` and forward it to `Kafka`, so that `Kafka` in turn can forward it to any `Consumers`,
+ * listening for messages on the relevant `Kafka` topic.
+ */
 @Component
 public class EmailChannel implements Channel {
 

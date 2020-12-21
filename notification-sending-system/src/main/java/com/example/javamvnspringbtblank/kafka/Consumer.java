@@ -10,6 +10,9 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+/**
+ * Kafka Consumer implementation.
+ */
 @Service
 @EnableKafka
 public class Consumer {

@@ -11,6 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * - A REST controller providing the application with REST endpoints.
+ * - It makes use of `com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService` to send
+ * the relevant notifications.
+ * - It makes use of `com.example.javamvnspringbtblank.dao.NotificationDao` to persist, in the `MySQL database`,
+ * any notifications which have gone through the system.
+ */
 @RestController
 @RequestMapping({"/", "/notification-service"})
 public class NotificationController {

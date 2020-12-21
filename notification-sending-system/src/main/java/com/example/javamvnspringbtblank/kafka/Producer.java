@@ -6,6 +6,9 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+/**
+ * Kafka Producer implementation.
+ */
 @Service
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class Producer {

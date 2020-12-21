@@ -12,6 +12,9 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * An utility service to facilitate logging by encompassing all common logging related logic.
+ */
 @Component
 public class LoggingService {
     private static final Logger LOG = LoggerFactory.getLogger(LoggingService.class);

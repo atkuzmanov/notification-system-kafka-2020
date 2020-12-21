@@ -21,7 +21,11 @@ import java.io.IOException;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+/**
+ * Integration tests.
+ * - ***NOTE:*** The integration tests require a running `MySQL` database in a `Docker` container named
+ * `notificationmysql`. This is because they test of actual `"integration"` and require a database to write to.
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @DirtiesContext
