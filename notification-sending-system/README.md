@@ -8,6 +8,7 @@
   - [Initial breakdown and analysis](#initial-breakdown-and-analysis)
   - [Additional requirements clarifications](#additional-requirements-clarifications)
   - [Description](#description)
+    - [POSTMAN REST requests collection](#postman-rest-requests-collection)
   - [System components and more technical details and functionalities](#system-components-and-more-technical-details-and-functionalities)
   - [Challenges](#challenges)
   - [Install, Setup, Running and Deployment instructions](#install-setup-running-and-deployment-instructions)
@@ -117,6 +118,11 @@ For the purpose of the MVP the chosen interface is REST endpoints.
 
       Notify method is not implemented yet.
       ```
+- You can use the [POSTMAN REST requests collection](#postman-rest-requests-collection) for demo and testing purposes.
+
+### POSTMAN REST requests collection
+
+- [POSTMAN REST requests collection](notification-notification-sending-system-postman.postman_collection.json)
 
 ---
 

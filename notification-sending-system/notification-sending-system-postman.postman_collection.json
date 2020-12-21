@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "c26cccac-fffc-4f77-8c76-da0690a1ac18",
+		"name": "notification-sending-system-postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "notification-sending-system /notify/email POST LOCAL 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"message\": \"Body of message 1.\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/notification-service/notify/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"notification-service",
+						"notify",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notification-sending-system /notifyAll POST LOCAL 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n    \"id\": 1,\n    \"message\": \"Body of the message 2\"\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/notification-service/notifyAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"notification-service",
+						"notifyAll"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
