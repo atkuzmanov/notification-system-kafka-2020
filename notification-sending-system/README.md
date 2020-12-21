@@ -35,7 +35,31 @@ Please see class diagram for more information:
 
 2. `Requirement 2.` The system needs to be horizontally scalable.
 
+The system is designed to be horizontally scalable by using technologies such as `Docker`, `Docker Compose` and `Apache Kafka`.
 
+This design allows when the system is deployed to production to be deployed to `Kubernetes` and for each component to be scaled according to load.
+
+3. `Requirement 3.` The system must guarantee an *"at least once"* SLA for sending the message.
+
+The system is designed to guarantee `at least once` SLA for sending messages by utilizing `Apache Kafka's` Producer functionality.
+
+```shell
+      # The following properties `acks: 1` and `retries: 3` allow us to achieve the desired guarantee of the system,
+      # that an "at least once" SLA for sending the message, is met.
+      # Please see below for more details:
+      # "When this property is set to 1 you can achieve at least once delivery semantics.
+      # A Kafka producer sends the record to the broker and waits for a response from the broker.
+      # If no acknowledgment is received for the message sent, then the producer will retry sending the messages
+      # based on a retry configuration. The retries property, by default, is set to 0;
+      # make sure this is set to the desired number or Max.INT."
+      # References:
+      # https://dzone.com/articles/kafka-producer-delivery-semantics
+      # http://kafka.apache.org/090/documentation.html#producerconfigs
+```
+
+Please see the full configuration file for more details:
+
+- [kafka.yml](../src/main/resources/kafka.yml)
 
 ---
 
@@ -58,19 +82,7 @@ ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,addr
 
 ---
 
-```shell
-      # The following properties `acks: 1` and `retries: 3` allow us to achieve the desired guarantee of the system,
-      # that an "at least once" SLA for sending the message, is met.
-      # Please see below for more details:
-      # "When this property is set to 1 you can achieve at least once delivery semantics.
-      # A Kafka producer sends the record to the broker and waits for a response from the broker.
-      # If no acknowledgment is received for the message sent, then the producer will retry sending the messages
-      # based on a retry configuration. The retries property, by default, is set to 0;
-      # make sure this is set to the desired number or Max.INT."
-      # References:
-      # https://dzone.com/articles/kafka-producer-delivery-semantics
-      # http://kafka.apache.org/090/documentation.html#producerconfigs
-```
+
 ---
 
 ## Further development
@@ -78,5 +90,9 @@ ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,addr
 ---
 
 ## References
+
+<https://dzone.com/articles/kafka-producer-delivery-semantics>
+
+<http://kafka.apache.org/090/documentation.html#producerconfigs>
 
 ---
