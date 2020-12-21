@@ -1,6 +1,21 @@
 # notification-sending-system
 
+<!-- TOC -->
+
+- [notification-sending-system](#notification-sending-system)
+  - [README](#readme)
+  - [Description](#description)
+  - [Install, Setup and Running instructions](#install-setup-and-running-instructions)
+  - [Further development](#further-development)
+  - [References](#references)
+
+<!-- /TOC -->
+
 ---
+
+## README
+
+## Description
 
 This is an extensible and scalable minimum viable product (MVP) of a message sending system .
 
@@ -9,10 +24,9 @@ The system is able to send notifications via several different channels (email, 
 For the purposes of the MVP only the `email` channel is implemented.
 
 
-
-
 ---
 
+## Install, Setup and Running instructions
 
 For Docker container, to be packaged well:
 ```shell
@@ -44,4 +58,12 @@ ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,addr
       # https://dzone.com/articles/kafka-producer-delivery-semantics
       # http://kafka.apache.org/090/documentation.html#producerconfigs
 ```
+---
+
+## Further development
+
+---
+
+## References
+
 ---
