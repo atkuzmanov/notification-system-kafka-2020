@@ -14,6 +14,7 @@
     - [System code base components and more technical details and functionalities](#system-code-base-components-and-more-technical-details-and-functionalities)
   - [Challenges](#challenges)
   - [Install, Setup, Running and Deployment instructions](#install-setup-running-and-deployment-instructions)
+    - [`/etc/hosts` file](#etchosts-file)
   - [Demo](#demo)
   - [Further development](#further-development)
   - [Related projects](#related-projects)
@@ -74,6 +75,7 @@ The system is designed to be horizontally scalable by using technologies such as
 This design allows when the system is deployed to production to be deployed to `Kubernetes` and for each component to be scaled according to load.
 
 <div id="requirement3"></div>
+
 3. `Requirement 3.` The system must guarantee an *"at least once"* SLA for sending the message.
 
 The system is designed to guarantee `at least once` SLA for sending messages by utilizing `Apache Kafka's` Producer functionality.
@@ -261,25 +263,45 @@ The following endpoints can be used to trigger a notification to be sent.
 
 ## Challenges
 
+A lot of `research`, `time` and `experiments` went into overcoming the following challenges:
+
+- This is the first time setting up `Apache Kafka` in a distributed environment with `Docker` and there were plenty of challenges in building and getting all services to talk to each other and play nicely.
+
+- Debugging in a distributed environment with `Docker` and `Docker Compose`.
+
 ---
 
 ## Install, Setup, Running and Deployment instructions
 
-`/etc/hosts` file:
+### `/etc/hosts` file
+
+The following is required to allow the Docker containers to communicate while running on your local machine.
+
+Append the following to the end of your `/etc/hosts` file:
 
 ```sh
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+127.0.0.1 zookeeper
+127.0.0.1 kafka
+127.0.0.1 notification-sending-system
+127.0.0.1 notificationmysql
 ```
 
-For Docker container, to be packaged well:
+- For Docker container, to be packaged well:
+
 ```shell
 mvn clean package install spring-boot:repackage -DskipTests
 ```
+
+- Docker compose
 
 ```shell
 docker-compose up --build --remove-orphans
 ```
 
-For remote debugging in Dockerfile:
+- For remote debugging in Dockerfile:
 
 ```shell
 ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.security.egd=file:/dev/./urandom
