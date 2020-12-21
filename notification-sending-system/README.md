@@ -195,33 +195,36 @@ The following endpoints can be used to trigger a notification to be sent.
   - A class which implements the `com.example.javamvnspringbtblank.service.channel.Channel` interface. As per [Additional requirements clarifications](#additional-requirements-clarifications) it is not required and therefore does not provide its own implementations of the methods required by the interface contract, so it inherits the interface's default methods which throw `com.example.javamvnspringbtblank.exception.NotificationException`, which is in turn handled by `com.example.javamvnspringbtblank.exception.RestResponseEntityExceptionHandler`.
 
 - `ChannelNotificationService`
-NotificationService
 
+- NotificationService
 
-LoggingService.java
+- LoggingService.java
 
-LoggingFilter
-NotificationController
+- LoggingFilter
 
+- NotificationController
 
-App
+- App
 
+- application.properties
 
-application.properties
-kafka.yml
+- kafka.yml
 
+- ChannelNotificationServiceIntegrationTest
 
-ChannelNotificationServiceIntegrationTest
-ChannelNotificationServiceTest
-TestUtils
+- ChannelNotificationServiceTest
 
+- TestUtils
 
-docker-compose.yml
-Dockerfile
-kafka_server_jaas.conf
-pom.xml
-setup.sql
+- docker-compose.yml
 
+- Dockerfile
+
+- kafka_server_jaas.conf
+
+- pom.xml
+
+- setup.sql
 
 ---
 
