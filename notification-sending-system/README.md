@@ -4,17 +4,35 @@
 
 - [notification-sending-system](#notification-sending-system)
   - [README](#readme)
+  - [Initial client requirements and task](#initial-client-requirements-and-task)
+  - [Initial breakdown and analysis](#initial-breakdown-and-analysis)
+  - [Additional requirements clarifications](#additional-requirements-clarifications)
   - [Description](#description)
   - [System components and more technical details and functionalities](#system-components-and-more-technical-details-and-functionalities)
-  - [Install, Setup and Running instructions](#install-setup-and-running-instructions)
+  - [Install, Setup, Running and Deployment instructions](#install-setup-running-and-deployment-instructions)
   - [Further development](#further-development)
   - [References](#references)
 
+<!-- /TOC -->
 <!-- /TOC -->
 
 ---
 
 ## README
+
+## Initial client requirements and task
+
+- Please see: [Initial client requirements task](Tech%20Assignment_Verification_SSE.pdf)
+
+## Initial breakdown and analysis
+  
+- This is based on [Initial client requirements and task](#initial-client-requirements-and-task), please see:
+
+  - [Initial breakdown and analysis](ANALYSIS_V1.0.md)
+
+## Additional requirements clarifications
+
+- Please see: [Additional requirements clarifications](ADDITIONAL_REQ_CLARIFICATION.md)
 
 ## Description
 
@@ -72,7 +90,11 @@ Please see the full configuration file for more details:
 
 4. `Requirement 4.` The interface for accepting notifications to be sent can be chosen on your own discretion.
 
+For the purpose of the MVP the chosen interface is REST endpoints.
 
+- `/notify` endpoint
+
+- `/notifyAll` endpoint
 
 ---
 
@@ -80,7 +102,7 @@ Please see the full configuration file for more details:
 
 ---
 
-## Install, Setup and Running instructions
+## Install, Setup, Running and Deployment instructions
 
 For Docker container, to be packaged well:
 ```shell
@@ -96,6 +118,10 @@ For remote debugging in Dockerfile:
 ```shell
 ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.security.egd=file:/dev/./urandom
 ```
+
+For Maven help, please see:
+
+- [Maven help](HELP.md)
 
 ---
 
