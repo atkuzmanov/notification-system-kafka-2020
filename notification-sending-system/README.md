@@ -21,6 +21,9 @@
     - [Remote debugging with IntelliJ Idea CE](#remote-debugging-with-intellij-idea-ce)
     - [Maven](#maven)
   - [Demo](#demo)
+  - [Working solution sending an `email` notification demo](#working-solution-sending-an-email-notification-demo)
+  - [Remote debugging config demo](#remote-debugging-config-demo)
+  - [Remote debugging demo](#remote-debugging-demo)
   - [Further development](#further-development)
   - [Related projects](#related-projects)
   - [References](#references)
@@ -351,6 +354,8 @@ For Maven help, please see:
 
 ## Demo
 
+## Working solution sending an `email` notification demo
+
 ![Demo](additional_resources/Demo-1.png)
 
 ![Demo](additional_resources/Demo-2.png)
@@ -384,6 +389,32 @@ For Maven help, please see:
 ![Demo](additional_resources/Demo-16.png)
 
 ![Demo](additional_resources/Demo-17.png)
+
+## Remote debugging config demo
+
+![Remote debugging config](additional_resources/Docker-Remote-Debug-Config-1.png)
+
+![Remote debugging config](additional_resources/Docker-Remote-Debug-Config-2.png)
+
+![Remote debugging config](additional_resources/Docker-Remote-Debug-Config-3.png)
+
+![Remote debugging config](additional_resources/Docker-Remote-Debug-Config-4.png)
+
+## Remote debugging demo
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-1.png)
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-2.png)
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-3.png)
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-4.png)
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-5.png)
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-6.png)
+
+![Remote debugging](additional_resources/Docker-Remote-Debugging-7.png)
 
 ---
 
