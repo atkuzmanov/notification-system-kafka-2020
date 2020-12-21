@@ -14,6 +14,7 @@
   - [Install, Setup, Running and Deployment instructions](#install-setup-running-and-deployment-instructions)
   - [Demo](#demo)
   - [Further development](#further-development)
+  - [Related projects](#related-projects)
   - [References](#references)
 
 <!-- /TOC -->
@@ -95,6 +96,8 @@ Please see the full configuration file for more details:
 
 For the purpose of the MVP the chosen interface is REST endpoints.
 
+The following endpoints can be used to trigger a notification to be sent.
+
 - `/notify/{channelType}` endpoint
   
   - Used in this format for example, where `channelType` is replaced with `email: <http://localhost:8081/notification-service/notify/email>
@@ -118,6 +121,7 @@ For the purpose of the MVP the chosen interface is REST endpoints.
 
       Notify method is not implemented yet.
       ```
+
 - You can use the [POSTMAN REST requests collection](#postman-rest-requests-collection) for demo and testing purposes.
 
 ### POSTMAN REST requests collection
@@ -162,6 +166,10 @@ For Maven help, please see:
 ---
 
 ## Further development
+
+---
+
+## Related projects
 
 ---
 
