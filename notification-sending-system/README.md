@@ -73,10 +73,11 @@ The system is designed to be horizontally scalable by using technologies such as
 
 This design allows when the system is deployed to production to be deployed to `Kubernetes` and for each component to be scaled according to load.
 
+<div id="requirement3"></div>
 3. `Requirement 3.` The system must guarantee an *"at least once"* SLA for sending the message.
 
 The system is designed to guarantee `at least once` SLA for sending messages by utilizing `Apache Kafka's` Producer functionality.
-The configuraiton which allows us to achieve this is setting the `acks: 1` and `retries: 3` parameters.
+The configuration which allows us to achieve this is setting the `acks: 1` and `retries: 3` parameters for the `producer`.
 Here is an excerpt from the full configuration file:
 
 ```yml
@@ -139,6 +140,8 @@ The following endpoints can be used to trigger a notification to be sent.
 
 - [POSTMAN REST requests collection](notification-notification-sending-system-postman.postman_collection.json)
 
+***NOTE:*** The system provides additional functionality of persisting notifications which have gone through it, in a `MySQL database`.
+
 ### System high-level components and services
 
 - Main code base
@@ -184,6 +187,7 @@ The following endpoints can be used to trigger a notification to be sent.
 
 - `com.example.javamvnspringbtblank.service.channel.ChannelFactory`
   - A basic implementation of a `Factory Design Pattern` for producing the relevant Channel objects based on the required type and hence providing the relevant functionality.
+  - The `ChannelFactory` is configured with supported channels from the `application.properties` configuration file, thus making it more flexible and extensible for the future.
 
 - `com.example.javamvnspringbtblank.service.channel.EmailChannel`
   - A concrete implementation of the `com.example.javamvnspringbtblank.service.channel.Channel` interface. `EmailChannel` makes use of the Kafka `com.example.javamvnspringbtblank.kafka.Producer` to produce the required message of type `email` and forward it to `Kafka`, so that `Kafka` in turn can forward it to any `Consumers`, listening for messages on the relevant `Kafka` topic.
@@ -211,27 +215,47 @@ The following endpoints can be used to trigger a notification to be sent.
   - It makes use of `com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService` to send the relevant notifications.
   - It makes use of `com.example.javamvnspringbtblank.dao.NotificationDao` to persist, in the `MySQL database`, any notifications which have gone through the system.
 
-- App
+- `com.example.javamvnspringbtblank.App`
+  - The application's main class and main entry point for start up.
 
-- application.properties
+- `application.properties`
+  - File containing the applications configuration for:
+    - Custom configuration for supported channels
+    - Logging
+    - Databases
+    - Kafka
+    - Other etc. can be added in the future
+  - ***NOTE:*** Contains auth credentials for demo purposes. Credentials for running in a real, deployed-to-live, scenario to be stored in a secure manner, such as a `truststore` or `Vault`.
 
-- kafka.yml
+- `kafka.yml`
+  - Apache Kafka configuration file.
+  - Contains configuration for the Kafka `Producers` and `Consumers`, please see [Requirement 3](#requirement3) for more details.
 
-- ChannelNotificationServiceIntegrationTest
+- `com.example.javamvnspringbtblank.ChannelNotificationServiceIntegrationTest`
+  - Integration tests.
+  - ***NOTE:*** The integration tests require a running `MySQL` database in a `Docker` container named `notificationmysql`. This is because they test of actual `"integration"` and require a database to write to.
 
-- ChannelNotificationServiceTest
+- `com.example.javamvnspringbtblank.ChannelNotificationServiceTest`
+  - Unit tests.
 
-- TestUtils
+- `com.example.javamvnspringbtblank.TestUtils`
+  - A test utility class for encompassing all common test related logic.
 
-- docker-compose.yml
+- `docker-compose.yml`
+  - Docker Compose configuration.
 
-- Dockerfile
+- `Dockerfile`
+  - Docker container file for the `notification-sending-system`.
+  - Also provides remote debugging capabilities for the code running in the container.
 
-- kafka_server_jaas.conf
+- `kafka_server_jaas.conf`
+  - `Apache Kafka` auth credentials for demo purposes. Credentials for running in a real, deployed-to-live, scenario to be stored in a secure manner, such as a `truststore` or `Vault`.
 
-- pom.xml
+- `pom.xml`
+  - The application's POM file containing all of the necessary `Maven` dependencies.
 
-- setup.sql
+- `setup.sql`
+  - A small `SQL` script to do the required set up for the MySQL database in the `Docker` container.
 
 ---
 
