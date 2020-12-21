@@ -42,6 +42,14 @@
 
 This is an extensible and scalable minimum viable product (MVP) of a message sending system .
 
+- Tech stack:
+  - Java
+  - Spring Boot
+  - Apache Kafka
+  - Zookeeper
+  - MySQL
+  - Docker
+
 1. `Requirement 1.` -  The system needs to be able to send notifications via several different channels (email,
 sms, slack) and be easily extensible to support more channels in the future.
 
@@ -131,6 +139,56 @@ The following endpoints can be used to trigger a notification to be sent.
 ---
 
 ## System components and more technical details and functionalities
+
+NotificationDao
+NotificationException
+RestResponseEntityExceptionHandler
+
+Consumer
+Producer
+
+BasicNotification
+Notification
+NotificationBase
+NotificationChannelType
+
+
+Channel
+ChannelFactory
+EmailChannel
+SlackChannel
+SMSChannel
+
+
+
+ChannelNotificationService
+NotificationService
+
+
+LoggingService.java
+
+LoggingFilter
+NotificationController
+
+
+App
+
+
+application.properties
+kafka.yml
+
+
+ChannelNotificationServiceIntegrationTest
+ChannelNotificationServiceTest
+TestUtils
+
+
+docker-compose.yml
+Dockerfile
+kafka_server_jaas.conf
+pom.xml
+setup.sql
+
 
 ---
 
