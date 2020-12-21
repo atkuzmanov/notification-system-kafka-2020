@@ -206,7 +206,10 @@ The following endpoints can be used to trigger a notification to be sent.
 - `com.example.javamvnspringbtblank.webrest.LoggingFilter`
   - A dispatcher servlet filter to capture and log all incoming REST requests and outgoing REST responses. It makes use of `com.example.javamvnspringbtblank.service.LoggingService`.
 
-- NotificationController
+- `com.example.javamvnspringbtblank.webrest.NotificationController`
+  - A REST controller providing the application with REST endpoints.
+  - It makes use of `com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService` to send the relevant notifications.
+  - It makes use of `com.example.javamvnspringbtblank.dao.NotificationDao` to persist, in the `MySQL database`, any notifications which have gone through the system.
 
 - App
 

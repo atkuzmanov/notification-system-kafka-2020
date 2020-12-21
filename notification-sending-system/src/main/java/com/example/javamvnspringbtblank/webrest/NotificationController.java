@@ -46,7 +46,8 @@ public class NotificationController {
     public @ResponseBody
     ResponseEntity<String> notifyAll(@RequestBody BasicNotification notification) {
         long notifId = service.notifyAll(producer, notification);
+        long persistedNotifId = notificationDao.save(notification).getNotificationId();
         return new ResponseEntity<>("Notification [" + notifId +
-                "] successfully sent to all channels.", HttpStatus.OK);
+                "] successfully sent to all channels and persisted with id [" + persistedNotifId + "].", HttpStatus.OK);
     }
 }
