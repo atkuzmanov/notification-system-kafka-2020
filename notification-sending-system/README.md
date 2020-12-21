@@ -14,7 +14,11 @@
     - [System code base components and more technical details and functionalities](#system-code-base-components-and-more-technical-details-and-functionalities)
   - [Challenges](#challenges)
   - [Install, Setup, Running and Deployment instructions](#install-setup-running-and-deployment-instructions)
-    - [`/etc/hosts` file](#etchosts-file)
+    - [Setting up the `/etc/hosts` file](#setting-up-the-etchosts-file)
+    - [Building the project](#building-the-project)
+    - [Running the project with `Docker Compose`](#running-the-project-with-docker-compose)
+    - [Remote debugging with IntelliJ Idea CE](#remote-debugging-with-intellij-idea-ce)
+    - [Maven](#maven)
   - [Demo](#demo)
   - [Further development](#further-development)
   - [Related projects](#related-projects)
@@ -273,7 +277,7 @@ A lot of `research`, `time` and `experiments` went into overcoming the following
 
 ## Install, Setup, Running and Deployment instructions
 
-### `/etc/hosts` file
+### Setting up the `/etc/hosts` file
 
 The following is required to allow the Docker containers to communicate while running on your local machine.
 
@@ -289,23 +293,41 @@ Append the following to the end of your `/etc/hosts` file:
 127.0.0.1 notificationmysql
 ```
 
-- For Docker container, to be packaged well:
+### Building the project
+
+- For the code base to be packaged well run the following command, in your terminal, in the root folder of the project:
+
+```shell
+mvn clean package install spring-boot:repackage
+```
+
+***NOTE:*** The integration tests require a running `MySQL` database in a `Docker` container named `notificationmysql`. This is because they test of actual `"integration"` and require a database to write to.
+
+***NOTE:*** This command is required because Spring Boot generates it's own `MANIFEST` file and if the above command is not run, it will not end up in the final `jar` file and `Docker` will fail to build the container.
+
+- To skip running the tests run:
 
 ```shell
 mvn clean package install spring-boot:repackage -DskipTests
 ```
 
-- Docker compose
+### Running the project with `Docker Compose`
+
+- Run the following Docker Compose command in your terminal, in the root folder of the project:
 
 ```shell
 docker-compose up --build --remove-orphans
 ```
+
+### Remote debugging with IntelliJ Idea CE
 
 - For remote debugging in Dockerfile:
 
 ```shell
 ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.security.egd=file:/dev/./urandom
 ```
+
+### Maven
 
 For Maven help, please see:
 
