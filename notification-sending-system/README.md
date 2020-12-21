@@ -2,6 +2,18 @@
 
 ---
 
+This is an extensible and scalable minimum viable product (MVP) of a message sending system .
+
+The system is able to send notifications via several different channels (email, sms, slack) and is easily extensible to support more channels in the future.
+
+For the purposes of the MVP only the `email` channel is implemented.
+
+
+
+
+---
+
+
 For Docker container, to be packaged well:
 ```shell
 mvn clean package install spring-boot:repackage -DskipTests

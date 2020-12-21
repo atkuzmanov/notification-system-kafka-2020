@@ -1,0 +1,123 @@
+@startuml
+
+class com.example.javamvnspringbtblank.webrest.NotificationController {
+- NotificationDao notificationDao
+- Producer producer
+- ChannelNotificationService service
++ String returnIndexPage(Model)
++ ResponseEntity<String> notify(NotificationChannelType,BasicNotification)
++ ResponseEntity<String> notifyAll(BasicNotification)
+}
+
+abstract class com.example.javamvnspringbtblank.model.NotificationBase {
++ {abstract}String message()
+}
+
+class com.example.javamvnspringbtblank.service.channel.EmailChannel {
+- Logger logger
++ void notify(Producer,Notification)
++ boolean supports(NotificationChannelType)
+}
+
+class com.example.javamvnspringbtblank.model.BasicNotification {
+- long notificationId
+- String message
++ long getNotificationId()
++ String getMessage()
++ void setMessage(String)
++ String message()
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+class com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService {
+- AtomicInteger notificationId
+~ ChannelFactory factory
++ long notifyAll(Producer,Notification)
++ long notify(Producer,NotificationChannelType,Notification)
+}
+
+interface com.example.javamvnspringbtblank.model.Notification {
+~ String getMessage()
+~ void setMessage(String)
+}
+
+class com.example.javamvnspringbtblank.webrest.LoggingFilter {
+- LoggingService logServ
++ FilterRegistrationBean<LoggingFilter> initFilter()
+# void doFilterInternal(HttpServletRequest,HttpServletResponse,FilterChain)
+}
+
+class com.example.javamvnspringbtblank.kafka.Consumer {
+- Logger logger
++ void consume(String,Integer,String,int,String,long,Acknowledgment)
+}
+
+class com.example.javamvnspringbtblank.service.channel.SlackChannel {
+}
+
+class com.example.javamvnspringbtblank.service.channel.SMSChannel {
+}
+
+class com.example.javamvnspringbtblank.App {
++ {static} void main(String[])
+}
+
+class com.example.javamvnspringbtblank.service.channel.ChannelFactory {
+- List<Channel> channelList
++ Channel get(NotificationChannelType)
++ List<Channel> getChannels()
+- List<Channel> configureFactory(List<String>)
+}
+
+class com.example.javamvnspringbtblank.exception.NotificationException {
+}
+
+interface com.example.javamvnspringbtblank.dao.NotificationDao {
+}
+
+interface com.example.javamvnspringbtblank.service.channel.Channel {
+~ void notify(Producer,Notification)
+~ boolean supports(NotificationChannelType)
+}
+
+interface com.example.javamvnspringbtblank.service.outbound.NotificationService {
+~ long notify(Producer,NotificationChannelType,Notification)
+~ long notifyAll(Producer,Notification)
+}
+
+class com.example.javamvnspringbtblank.service.LoggingService {
+- {static} Logger LOG
++ void logCCRequest(ContentCachingRequestWrapper)
++ void logCCResponse(ContentCachingResponseWrapper)
++ {static} boolean isValidJSON(String)
++ void logException(Throwable)
+}
+
+class com.example.javamvnspringbtblank.kafka.Producer {
+- KafkaTemplate<String,String> kafkaTemplate
++ ListenableFuture<SendResult<String,String>> sendMessage(String,String,String)
+}
+
+class com.example.javamvnspringbtblank.exception.RestResponseEntityExceptionHandler {
+~ LoggingService logServ
++ ResponseEntity<?> handleAnyException(Exception)
++ ResponseEntity<?> handleNotificationException(Exception)
++ ResponseEntity<?> handleMiscFailures(Throwable)
+# ResponseEntity<?> errorResponse(Throwable,HttpStatus)
+# ResponseEntity<T> response(T,HttpStatus)
+}
+
+
+com.example.javamvnspringbtblank.model.Notification <|.. com.example.javamvnspringbtblank.model.NotificationBase
+com.example.javamvnspringbtblank.service.channel.Channel <|.. com.example.javamvnspringbtblank.service.channel.EmailChannel
+com.example.javamvnspringbtblank.model.NotificationBase <|-- com.example.javamvnspringbtblank.model.BasicNotification
+com.example.javamvnspringbtblank.service.outbound.NotificationService <|.. com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService
+org.springframework.web.filter.OncePerRequestFilter <|-- com.example.javamvnspringbtblank.webrest.LoggingFilter
+com.example.javamvnspringbtblank.service.channel.Channel <|.. com.example.javamvnspringbtblank.service.channel.SlackChannel
+com.example.javamvnspringbtblank.service.channel.Channel <|.. com.example.javamvnspringbtblank.service.channel.SMSChannel
+com.example.javamvnspringbtblank.exception.RuntimeException <|-- com.example.javamvnspringbtblank.exception.NotificationException
+org.springframework.data.repository.CrudRepository <|-- com.example.javamvnspringbtblank.dao.NotificationDao
+org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler <|-- com.example.javamvnspringbtblank.exception.RestResponseEntityExceptionHandler
+@enduml
