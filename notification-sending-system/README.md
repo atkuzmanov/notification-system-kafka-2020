@@ -20,7 +20,6 @@
     - [Running the project with `Docker Compose`](#running-the-project-with-docker-compose)
     - [Remote debugging with IntelliJ Idea CE](#remote-debugging-with-intellij-idea-ce)
     - [Maven](#maven)
-  - [Demo](#demo)
   - [Working solution sending an `email` notification demo](#working-solution-sending-an-email-notification-demo)
   - [Remote debugging config demo](#remote-debugging-config-demo)
   - [Remote debugging demo](#remote-debugging-demo)
@@ -352,8 +351,6 @@ For Maven help, please see:
 
 ---
 
-## Demo
-
 ## Working solution sending an `email` notification demo
 
 ![Demo](additional_resources/Demo-1.png)
@@ -419,6 +416,32 @@ For Maven help, please see:
 ---
 
 ## Further development
+
+If the project is approved for the next stage, further time and resources should be provided for it.
+
+For this project to be advanced to the next level, the following should be taken into consideration and evaluated as requirements for further development.
+
+- Implement the next channels, `SlackChannel`, `SMSChannel`, and have separate Kafka topics for their production/consumption
+- Implement separate `profiles` for different environments, such as `integration`, `testing` and `production`
+- Run the following services `notification-sending-system`,`notificationmysql`,`kafka`, `zookeeper` in separate containers, managed in `Kubernetes`, so they can be scaled and managed more easily
+- JSON serialization/deserialization for messages
+- More Testing
+  - More Unit tests to cover unhappy paths and edge cases
+  - More Integration tests to cover unhappy paths and edge cases
+  - Load Testing
+- Security
+  - Credential store such as a custom `Trustsore` or `Vault`
+- Performance
+  - Research if custom thread pool is needed for vertical performance scalability
+- Structured Logging in `JSON` format so that it can be fed into systems such as `Splunk`
+- More CRUD capabilities for querying already persisted data
+- Distributed Tracing with `Sleuth` and `Zipkin` - indispensible if this system is to be part of a larger distributed system
+- Add metrics and monitoring
+- Static graphical User Interface (UX) using `Thymeleaf` or a dynamic one using `ReactJS` or `AngularJS` if a dynamic one is required. This can be used for manually triggering a notification.
+- Add more documentation
+  - Add Swagger API documentation
+- More resilience and availability through supporting more queue technologies both inbound and outbound, such as:
+  - Kafka and/or AWS SNS + SQS
 
 ---
 
