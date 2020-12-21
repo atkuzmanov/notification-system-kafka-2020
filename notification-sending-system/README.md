@@ -19,9 +19,22 @@
 
 This is an extensible and scalable minimum viable product (MVP) of a message sending system .
 
+1. `Requirement 1.` -  The system needs to be able to send notifications via several different channels (email,
+sms, slack) and be easily extensible to support more channels in the future.
+
 The system is able to send notifications via several different channels (email, sms, slack) and is easily extensible to support more channels in the future.
 
 For the purposes of the MVP only the `email` channel is implemented.
+
+The system contains a `Channel` interface which allows extensibility and support of more channels in the future. 
+The `Channel` interface is implemented by the `EmailChannel`, `SlackChannel`, `SMSChannel` and can be implemented by more channels in the future as required.
+
+Please see class diagram for more information:
+
+![Class Diagram 1](ClassDiag1.png)
+
+2. `Requirement 2.` The system needs to be horizontally scalable.
+
 
 
 ---
