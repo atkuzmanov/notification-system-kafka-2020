@@ -200,9 +200,11 @@ The following endpoints can be used to trigger a notification to be sent.
 - `com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService`
   - A concrete implementation of the `com.example.javamvnspringbtblank.service.outbound.NotificationService` interface. This service provides functionality which can be triggered by the system's REST endpoints to send notifications.
 
-- LoggingService.java
+- `com.example.javamvnspringbtblank.service.LoggingService`
+  - A service to facilitate logging by encompassing all common logging related logic.
 
-- LoggingFilter
+- `com.example.javamvnspringbtblank.webrest.LoggingFilter`
+  - A dispatcher servlet filter to capture and log all incoming REST requests and outgoing REST responses. It makes use of `com.example.javamvnspringbtblank.service.LoggingService`.
 
 - NotificationController
 

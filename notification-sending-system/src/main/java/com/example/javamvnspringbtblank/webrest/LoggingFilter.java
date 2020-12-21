@@ -34,24 +34,6 @@ public class LoggingFilter extends OncePerRequestFilter {
         return registrationBean;
     }
 
-    /**
-     * Note: Regarding Distributed Tracing, Sleuth and Zipkin
-     * The @traceId @spanId etc. are added when logging through the AOP Aspect.
-     * If the logging is not going through there, then they need to be manually added here.
-     * <p>
-     * RE: Difficulty adding the traceId from Spring Cloud Sleuth to response in Filter
-     * - <https://cloud.spring.io/spring-cloud-sleuth/2.0.x/single/spring-cloud-sleuth.html#__literal_tracingfilter_literal>
-     * - <https://stackoverflow.com/questions/41222405/adding-the-traceid-from-spring-cloud-sleuth-to-response>
-     * <p>
-     * RE: Difficulty in ContentCachingResponseWrapper Produces Empty Response
-     * - <https://stackoverflow.com/questions/39935190/contentcachingresponsewrapper-produces-empty-response>
-     *
-     * @param httpServletRequest
-     * @param httpServletResponse
-     * @param filterChain
-     * @throws ServletException
-     * @throws IOException
-     */
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(httpServletRequest);
