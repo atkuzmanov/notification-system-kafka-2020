@@ -528,9 +528,11 @@ Also please feel free to checkout my GitHub for other cool bits and bobs:
 
 ## References
 
-<https://dzone.com/articles/kafka-producer-delivery-semantics>
-
 <http://kafka.apache.org/090/documentation.html#producerconfigs>
+
+<https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/>
+
+<https://dzone.com/articles/kafka-producer-delivery-semantics>
 
 <https://github.com/atkuzmanov>
 
