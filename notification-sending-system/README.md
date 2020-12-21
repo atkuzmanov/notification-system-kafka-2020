@@ -155,6 +155,8 @@ The following endpoints can be used to trigger a notification to be sent.
 
 ### System Design high-level
 
+![Scalabe Distributed System Design diagram Messaging Service](Scalabe%20Distributed%20System%20Design%20diagram%20Messaging%20Service%202.png)
+
 ### System high-level components and services
 
 - Main code base
