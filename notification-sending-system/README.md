@@ -194,9 +194,11 @@ The following endpoints can be used to trigger a notification to be sent.
 - `com.example.javamvnspringbtblank.service.channel.SMSChannel`
   - A class which implements the `com.example.javamvnspringbtblank.service.channel.Channel` interface. As per [Additional requirements clarifications](#additional-requirements-clarifications) it is not required and therefore does not provide its own implementations of the methods required by the interface contract, so it inherits the interface's default methods which throw `com.example.javamvnspringbtblank.exception.NotificationException`, which is in turn handled by `com.example.javamvnspringbtblank.exception.RestResponseEntityExceptionHandler`.
 
-- `ChannelNotificationService`
+- `com.example.javamvnspringbtblank.service.outbound.NotificationService`
+  - An interface for `NotificationService` implementations defining a minimum set of requirements which need to be implemented.
 
-- NotificationService
+- `com.example.javamvnspringbtblank.service.outbound.ChannelNotificationService`
+  - A concrete implementation of the `com.example.javamvnspringbtblank.service.outbound.NotificationService` interface. This service provides functionality which can be triggered by the system's REST endpoints to send notifications.
 
 - LoggingService.java
 

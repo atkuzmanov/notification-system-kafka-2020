@@ -8,12 +8,8 @@ import com.example.javamvnspringbtblank.service.channel.ChannelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 @Service
 public class ChannelNotificationService implements NotificationService {
-
-    private AtomicInteger notificationId = new AtomicInteger(1);
 
     @Autowired
     ChannelFactory factory;
@@ -33,7 +29,7 @@ public class ChannelNotificationService implements NotificationService {
         for (Channel c : factory.getChannels()) {
             c.notify(producer, notification);
         }
-        return notificationId.longValue();
+        return notification.getNotificationId();
     }
 
     /**
@@ -46,6 +42,6 @@ public class ChannelNotificationService implements NotificationService {
     public long notify(Producer producer, NotificationChannelType channelType, Notification notification) {
         Channel channelToNotify = factory.get(channelType);
         channelToNotify.notify(producer, notification);
-        return notificationId.longValue();
+        return notification.getNotificationId();
     }
 }
