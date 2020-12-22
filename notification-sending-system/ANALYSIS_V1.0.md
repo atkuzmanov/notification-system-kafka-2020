@@ -26,7 +26,7 @@ Build MVP prototype with minimum set of required functionality to send notificat
 
 ### Functional requirements
 
-**`TODO` research, filter and prioritize the following according to importance and time constraints:** 
+**Research, filter and prioritize the following according to importance and time constraints:**
 
 - Requirement `1.` analysis and breakdown:
     - Build extensible hierarchical data model
@@ -45,7 +45,7 @@ Build MVP prototype with minimum set of required functionality to send notificat
                     - In the future this can be extended to push notifications etc.
                     - For the purposes of the scope of this task this will have three implementations - email, sms and slack. 
     - Additional considerations:
-        - REST API 
+        - REST API
         - JSON serialisation
         - Testing
             - Unit Testing
@@ -57,20 +57,20 @@ Build MVP prototype with minimum set of required functionality to send notificat
         - Exception handling
         - Thread safe
         - Performance
-            - `TODO` research if custom thread pool is needed for vertical performance scalability. 
+            - Research if custom thread pool is needed for vertical performance scalability.
         - Logging
-        - `TODO` research if database persistence of notifications and timestamp is required
+        - Research if database persistence of notifications and timestamp is required
         - Distributed Tracing
         - Design Patterns - Builder, Factory, ...
         - No graphical User Interface (UX) required
 
 - Requirement `2.` analysis and breakdown:    
-    - `TODO` research if containerization with Docker is required, so it can be scaled in Kubernetes or Cloud.
+    - Research if containerization with Docker is required, so it can be scaled in Kubernetes or Cloud.
 
 - Requirement `3.` analysis and breakdown:
     - Implement "at least once" logic to guarantee SLA.
     - Initial idea - `backoff and retry logic`.
-        - `TODO` research if `backoff and retry logic` is the best way.
+        - Research if `backoff and retry logic` is the best way.
         
 ### Non-functional requirements
 

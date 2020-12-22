@@ -10,6 +10,9 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+/**
+ * Kafka Consumer implementation.
+ */
 @Service
 @EnableKafka
 public class Consumer {
@@ -25,7 +28,7 @@ public class Consumer {
                         final @Header(KafkaHeaders.RECEIVED_TIMESTAMP) long ts,
                         final Acknowledgment acknowledgment
     ) {
-        logger.info(String.format("#### -> Consumed message -> TIMESTAMP: %d\n%s\noffset: %d\nkey: %s\npartition: %d\ntopic: %s",
+        logger.info(String.format("> Consumed message TIMESTAMP: %d\n%s\noffset: %d\nkey: %s\npartition: %d\ntopic: %s",
                 ts, message, offset, key, partition, topic));
         acknowledgment.acknowledge();
     }

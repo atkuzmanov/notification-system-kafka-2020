@@ -3,18 +3,13 @@ example:
     consumer-enabled: ${consumer-enabled:true}
 spring:
   kafka:
-#    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
-    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
-#    bootstrap-servers: ${kafka_bootstrap_servers:notification-sending-system_kafka_1:9092}
-#    bootstrap-servers: ${kafka_bootstrap_servers}
-#    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${kafka_bootstrap_servers:kafka:9093}
     properties:
       sasl:
         jaas:
           config: org.apache.kafka.common.security.plain.PlainLoginModule required username=${kafka_username:'admin'} password=${kafka_password:'admin-secret'};
         mechanism: PLAIN
       security:
-#        protocol: SASL_PLAINTEXT
         protocol: PLAINTEXT
     consumer:
       auto-offset-reset: earliest
@@ -29,7 +24,19 @@ spring:
       client-id: example
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      retries: 2
+      # The following properties `acks: 1` and `retries: 3` allow us to achieve the desired guarantee of the system,
+      # that an "at least once" SLA for sending the message, is met.
+      # Please see below for more details:
+      # "When this property is set to 1 you can achieve at least once delivery semantics.
+      # A Kafka producer sends the record to the broker and waits for a response from the broker.
+      # If no acknowledgment is received for the message sent, then the producer will retry sending the messages
+      # based on a retry configuration. The retries property, by default, is set to 0;
+      # make sure this is set to the desired number or Max.INT."
+      # References:
+      # https://dzone.com/articles/kafka-producer-delivery-semantics
+      # http://kafka.apache.org/090/documentation.html#producerconfigs
+      acks: 1
+      retries: 3
     jaas:
       enabled: true
     listener:

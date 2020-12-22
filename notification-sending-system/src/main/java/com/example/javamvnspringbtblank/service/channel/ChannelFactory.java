@@ -1,6 +1,5 @@
 package com.example.javamvnspringbtblank.service.channel;
 
-import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,8 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.javamvnspringbtblank.model.NotificationChannelType.*;
+import static com.example.javamvnspringbtblank.model.NotificationChannelType.valueOf;
 
+/**
+ *   A basic implementation of a `Factory Design Pattern` for producing the relevant Channel objects
+ *   based on the required type and hence providing the relevant functionality.
+ *
+ *   The `ChannelFactory` is configured with supported channels from the `application.properties` configuration file,
+ *   thus making it more flexible and extensible for the future.
+ */
 @Component
 public class ChannelFactory {
     private final List<Channel> channelList;

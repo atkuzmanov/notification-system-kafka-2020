@@ -1,5 +1,6 @@
 package com.example.javamvnspringbtblank.service.outbound;
 
+import com.example.javamvnspringbtblank.kafka.Producer;
 import com.example.javamvnspringbtblank.model.Notification;
 import com.example.javamvnspringbtblank.model.NotificationChannelType;
 import com.example.javamvnspringbtblank.service.channel.Channel;
@@ -7,12 +8,12 @@ import com.example.javamvnspringbtblank.service.channel.ChannelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * A concrete implementation of the `com.example.javamvnspringbtblank.service.outbound.NotificationService` interface.
+ * This service provides functionality which can be triggered by the system's REST endpoints to send notifications.
+ */
 @Service
 public class ChannelNotificationService implements NotificationService {
-
-    private AtomicInteger notificationId = new AtomicInteger(1);
 
     @Autowired
     ChannelFactory factory;
@@ -28,12 +29,11 @@ public class ChannelNotificationService implements NotificationService {
      * @return the notification id
      */
     @Override
-    public long notifyAll(Notification notification) {
+    public long notifyAll(Producer producer, Notification notification) {
         for (Channel c : factory.getChannels()) {
-            notification.setNotificationId(notificationId.getAndIncrement());
-            c.notify(notification);
+            c.notify(producer, notification);
         }
-        return notificationId.longValue();
+        return notification.getNotificationId();
     }
 
     /**
@@ -41,12 +41,11 @@ public class ChannelNotificationService implements NotificationService {
      *
      * @param channelType
      * @param notification
-     * @return notification id
+     * @return the notification id
      */
-    public long notify(NotificationChannelType channelType, Notification notification) {
-        notification.setNotificationId(notificationId.getAndIncrement());
+    public long notify(Producer producer, NotificationChannelType channelType, Notification notification) {
         Channel channelToNotify = factory.get(channelType);
-        channelToNotify.notify(notification);
-        return notificationId.longValue();
+        channelToNotify.notify(producer, notification);
+        return notification.getNotificationId();
     }
 }

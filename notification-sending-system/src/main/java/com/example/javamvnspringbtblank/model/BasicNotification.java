@@ -1,6 +1,18 @@
 package com.example.javamvnspringbtblank.model;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+/**
+ * Simple POJO concrete implementation of the `Notification` interface and `NotificationBase` abstract class abstractions.
+ * Includes annotations for mapping to database tables and fields.
+ */
+@Entity
+@Table(name = "basicnotification")
 public class BasicNotification extends NotificationBase {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long notificationId;
 
     private String message;
@@ -8,11 +20,6 @@ public class BasicNotification extends NotificationBase {
     public long getNotificationId() {
         return notificationId;
     }
-
-    public void setNotificationId(long notificationId) {
-        this.notificationId = notificationId;
-    }
-
 
     public String getMessage() {
         return message;
@@ -25,20 +32,30 @@ public class BasicNotification extends NotificationBase {
     public BasicNotification() {
     }
 
-    public BasicNotification(String msg) {
-        this.message = msg;
-    }
-
-    public BasicNotification(long notificationId, String msg) {
-        this.notificationId = notificationId;
-        this.message = msg;
-    }
-
     @Override
+    @Column(name = "message")
     public String message() {
         return message;
     }
 
-    // todo: toString()
-    // todo: override equals() & hashCode() methods
+    @Override
+    public String toString() {
+        return "BasicNotification with notificationId: [" + notificationId + "] and message : [" + message + "].";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (!(o instanceof BasicNotification)) {
+            return false;
+        }
+        BasicNotification basicNotification = (BasicNotification) o;
+        return notificationId == basicNotification.notificationId &&
+                Objects.equals(message, basicNotification.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(notificationId, message);
+    }
 }

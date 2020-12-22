@@ -14,6 +14,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Custom exception handler.
+ */
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
@@ -28,6 +31,15 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ResponseBody
     public ResponseEntity<?> handleAnyException(Exception e) {
         return errorResponse(e, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * Catch custom NotificationException exceptions.
+     */
+    @ExceptionHandler({NotificationException.class})
+    @ResponseBody
+    public ResponseEntity<?> handleNotificationException(Exception e) {
+        return errorResponse(e, HttpStatus.NOT_IMPLEMENTED);
     }
 
     /**
