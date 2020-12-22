@@ -155,7 +155,26 @@ The following endpoints can be used to trigger a notification to be sent.
 
 ### System Design high-level
 
+This is the System Design diagram of a `scalabe`, `distributed`  messaging service system.
+
 ![Scalabe Distributed System Design diagram Messaging Service](Scalabe%20Distributed%20System%20Design%20diagram%20Messaging%20Service%202.png)
+
+***NOTE:*** For the purposes of the MVP there is only one `Consumer` and it is located within the code base of the `notification-sending-system`.
+
+The scalability and distribution of the system are achieved through:
+
+- Docker containerization allowing to scale each component to multiple clusters/replicas/pods/containers.
+
+- Intrinsic scalable and distributed properties of Apache Kafka in terms of clusters, topics, partitions, etc. For more information please see: <http://kafka.apache.org/090/documentation.html>
+
+![log_anatomy](additional_resources/log_anatomy.png)
+
+![producer_consumer](additional_resources/producer_consumer.png)
+
+![consumer-groups](additional_resources/consumer-groups.png)
+
+> References:
+> <http://kafka.apache.org/090/documentation.html#producerconfigs>
 
 ### System high-level components and services
 
