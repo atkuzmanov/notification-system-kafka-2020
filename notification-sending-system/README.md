@@ -357,7 +357,7 @@ Append the following to the end of your `/etc/hosts` file:
 mvn clean package install spring-boot:repackage
 ```
 
-***NOTE:*** The integration tests require a running `MySQL` database in a `Docker` container named `notificationmysql`. This is because they test of actual `"integration"` and require a database to write to.
+***NOTE:*** The integration tests require a running `MySQL` database in a `Docker` container named `notificationmysql`. This is because they test of actual `"integration"` and require a database to write to. First time around you might need to build it using the `-DskipTests` flag, see below.
 
 ***NOTE:*** This command is required because Spring Boot generates it's own `MANIFEST` file and if the above command is not run, it will not end up in the final `jar` file and `Docker` will fail to build the container.
 
