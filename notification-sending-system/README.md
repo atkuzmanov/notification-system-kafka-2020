@@ -77,6 +77,8 @@ Please see class diagram for more information:
 
 ![Class Diagram 1](ClassDiag1.png)
 
+***NOTE:*** Please click on this and all subsequent images to enlarge, or open them in a new window.
+
 2. `Requirement 2.` The system needs to be horizontally scalable.
 
 The system is designed to be horizontally scalable by using technologies such as `Docker`, `Docker Compose` and `Apache Kafka`.
